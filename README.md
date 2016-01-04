@@ -1,4 +1,4 @@
-<h1>Scalaの文字列処理 - Day 4 Stringの文字コード変換と数値型との相互変換</h1>
+<h1>Day 4 Stringの文字コード変換と数値型との相互変換</h1>
 <img src="https://github.com/ynupc/scalastringcourse/blob/master/image/day4/string_course.001.jpeg" width="500px"><br>
 今日は、Stringの文字コード変換と数値型との相互変換について紹介したいと思います。ご質問や間違いなどのご指摘は下記のコメント欄にお書きください。
 ***
