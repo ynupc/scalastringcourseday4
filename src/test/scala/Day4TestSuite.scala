@@ -41,7 +41,7 @@ class Day4TestSuite extends AssertionsForJUnit {
     println("---")
     val ms932Aliases: util.Set[String] = ms932.aliases
     val ms932AliasesIterator = ms932Aliases.iterator
-    println("Canonical name:")
+    println("Canonical Name:")
     println(ms932.name)
     println("Aliases:")
     while (ms932AliasesIterator.hasNext) {
@@ -50,7 +50,7 @@ class Day4TestSuite extends AssertionsForJUnit {
     println()
     val utf8Aliases: util.Set[String] = utf8.aliases
     val utf8AliaseIterator = utf8Aliases.iterator
-    println("Canonical name:")
+    println("Canonical Name:")
     println(utf8.name)
     println("Aliases:")
     while (utf8AliaseIterator.hasNext) {
