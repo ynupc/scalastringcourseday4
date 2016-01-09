@@ -12,6 +12,7 @@
 <strong><a href="doc/charset.md#1stringの文字コード変換">1.　Stringの文字コード変換</a></strong>  
 <strong><a href="doc/charset.md#11charsetの正式名称canonical-nameとエイリアス">1.1　Charsetの正式名称（Canonical Name）とエイリアス</a></strong>  
 <strong><a href="doc/charset.md#12文字コードの変換">1.2　文字コードの変換</a></strong>  
+<a href="doc/charset.md#コラムwindowsのコマンドプロンプトの文字コード変更">コラム：Windowsのコマンドプロンプトの文字コード変更</a>  
 <a href="doc/charset.md#コラムmalformedinputexceptionとunmappablecharacterexceptionの回避方法">コラム：MalformedInputExceptionとUnmappableCharacterExceptionの回避方法</a> 
 
 <strong><a href="doc/numerical.md#2stringと数値型の相互変換">2.　Stringと数値型の相互変換</a></strong>  
