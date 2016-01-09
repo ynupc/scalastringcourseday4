@@ -32,7 +32,13 @@ int value = (int) 10L;
 32bitの浮動小数|float|java.lang.Float
 64bitの浮動小数|double|java.lang.Double
 
-プリミティブ型の等値比較に==演算子を使いますが、ラッパークラスの等値比較にはequalsメソッドを使います。メモリ上ではプリミティブ型はスタック領域に乗りますが、ラッパークラスは参照型なので参照がスタック領域にオブジェクトはヒープ領域に乗ります。
+プリミティブ型の等値比較に==演算子を使いますが、ラッパークラスの等値比較にはequalsメソッドを使います。メモリ上ではプリミティブ型はスタック領域に乗りますが、ラッパークラスは参照型なので参照がスタック領域にオブジェクトはヒープ領域に乗ります。プリミティブ型とプリミティブラッパークラスの変換について次の表にまとめます。
+
+ラッパークラス|プリミティブ型<br>to ラッパークラス|ラッパークラス<br>to プリミティブ型
+---|---|---
+Boolean|Boolean booleanObj = Boolean.valueOf(flag);|boolean flag = booleanObj.booleanValue();<br>NullPointerException
+Character|Character characterObj = Character.valueOf(cValue);|char cValue = character_obj.charValue();<br>//NullPointerException
+Byte (Short, Integer, Long, Float, DoubleもByteと同様)|Byte byteObj = Byte.valueOf(bValue);|byte bValue = byteObj.byteValue();<br>//NullPointerException<br><br>short sValue = byteObj.shortValue();<br>//NullPointerException<br><br>int iValue = byteObj.intValue();<br>//NullPointerException<br><br>long lValue = byteObj.longValue();<br>//NullPointerException<br><br>float fValue = byteObj.floatValue();<br>//NullPointerException<br><br>double dValue = byteObj.doubleValue();<br>//NullPointerException
 
 <h4>（４）auto-boxing conversion</h4>
 プリミティブ型からラッパークラスへの変換は、明示しなくても大丈夫です。
