@@ -63,7 +63,6 @@ Charsetクラスでよく使われるメソッドをスライドに一覧にし�
     val toMs932 = new String(str.getBytes, "MS932")
   }
 ```
-***
 <h3>コラム：Windowsのコマンドプロンプトの文字コード変更</h3>
 Windowsのコマンドプロンプトの文字コードをUTF-8にしたいときは```chcp 65001```、デフォルトのwindows-31jに戻したいときは```chcp 932```で変更できます。
 <h3>コラム：<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/MalformedInputException.html" target="_blank">MalformedInputException</a>と<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/UnmappableCharacterException.html" target="_blank">UnmappableCharacterException</a>の回避方法</h3>
