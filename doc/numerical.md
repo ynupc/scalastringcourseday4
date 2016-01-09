@@ -1,5 +1,5 @@
 # 2.　Stringと数値型の相互変換
-数値型といってもCharは数値型ですがStringとCharの相互変換についてはDay 3で取り上げたのでここでは改めて取り上げません。さらにBooleanは数値型ではないですがここでは取り上げます。従って、Boolean、Byte、Short、Int、Long、Float、DoubleとStringとの相互変換について説明します。  
+数値型といってもChar、Byte、Short、Int、Long、Float、Doubleといったものがありますが、Charは数値型ですがStringとCharの相互変換についてはDay 3で取り上げたのでここでは改めて取り上げませんが、数字としてのCharやコードポイントを数値（Int）に変換する方法については説明します。さらにBooleanは数値型ではないですがここでは取り上げます。従って、Boolean、Byte、Short、Int、Long、Float、DoubleとStringとの相互変換について説明し、数字としてのCharやコードポイントを数値（Int）に変換についても説明します。  
 <img src="../image/string_course.005.jpeg" width="500px"><br>
 JavaでStringと数値型を変換するには、数値型が参照型ではなく特殊なプリミティブ型であるために学ぶべきことが多くあります。  
 <img src="../image/string_course.006.jpeg" width="500px"><br>
@@ -49,6 +49,12 @@ java.lang.BooleanのparseBooleanメソッドは大文字（Upper Case）や小�
     assert(!java.lang.Boolean.parseBoolean("false"))
     assert(!java.lang.Boolean.parseBoolean("true janakereba nandemo iinkai"))
   }
+```
+***
+<h3>2.3　数字（Charまたはコードポイント）から数値（Int）への変換</h3>
+java.lang.Character.getNumericValueメソッドで数字（Charまたはコードポイント）から数値（Int）に変換できます。
+```scala
+
 ```
 ***
 <h3>2.2　N進数表記</h3>
