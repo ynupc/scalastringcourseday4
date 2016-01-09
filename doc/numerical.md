@@ -93,7 +93,7 @@ java.lang.Integer、java.lang.Longは任意のN進数表記のStringに変換す
 <img src="../image/string_course.010.jpeg" width="500px"><br>
 Character.digitメソッドで文字（Charやコードポイント）をN進数表記と解釈して数値型に変換できます。
 Character.digitメソッドは第二引数で与えられた基数Nで定義されない文字の変換については-1を返します。
-数字を数値に変換するCharacter.getNumericValueメソッドは、N=36の場合のCharacter.digitメソッドに似た振舞いをします。なぜ36かというと、0-9の10文字とa-zの26文字を合計して36文字が一般的にN進数表記で使用される文字だからです。定義される基数Nの最大値Character.MAX_RADIXにも36が格納されています。基数36を与えたCharacter.digitメソッドとCharacter.getNumericValueメソッドの違いは、Character.getNumericValueメソッドはN進数と関係ない数字（ローマ数字で50を表す'\u216C'、漢数字で100を表す'百'など）に対しても数値を返す点と文字が数字ではない場合は-1を返しますが文字が数字であっても正の整数を表さない場合は-2を返す点です。
+数字（Charやコードポイント）を数値に変換するCharacter.getNumericValueメソッドは、N=36の場合のCharacter.digitメソッドに似た振舞いをします。なぜ36かというと、0-9の10文字とa-zの26文字を合計して36文字が一般的にN進数表記で使用される文字だからです。定義される基数Nの最大値Character.MAX_RADIXにも36が格納されています。基数36を与えたCharacter.digitメソッドとCharacter.getNumericValueメソッドの違いは、Character.getNumericValueメソッドはN進数と関係ない数字（ローマ数字で50を表す'\u216C'、漢数字で100を表す'百'など）に対しても数値を返す点と文字が数字ではない場合は-1を返しますが文字が数字であっても正の整数を表さない場合は-2を返す点です。
 ```scala
   @Test
   def testRadix2(): Unit = {
