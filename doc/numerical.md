@@ -5,14 +5,14 @@ JavaでStringと数値型の変換を学ぶには、数値型が参照型では�
 <h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
 Javaでの数値型を含むプリミティブ型とStringとの相互変換を説明しますが、それを説明する前にプリミティブ型同士の相互変換やプリミティブ型とプリミティブラッパークラスとの相互変換についても説明します。Scalaでのみプログラミングをする人は読み飛ばしてください。
 <h4>（１）widening primitive conversion</h4>
-```double value = 10.0F;```  
-容量が大きい型への代入は暗黙に変換されます。  
-long (64bit) &gt; int (32bit) &gt; short (16bit) &gt; byte (8bit)  
+double value = 10.0F;<br>
+容量が大きい型への代入は暗黙に変換されます。<br>
+long (64bit) &gt; int (32bit) &gt; short (16bit) &gt; byte (8bit)<br>
 double (64bit) &gt; float (32bit)  
 
 <h4>（２）narrowing primitive conversion</h4>
-容量が小さい型への代入は明示的に型を指定してキャストする必要があります。  
-```int value = (int) 10L;```  
+容量が小さい型への代入は明示的に型を指定してキャストする必要があります。  <br>
+```int value = (int) 10L;```  <br>
 下の桁から数えて型に入りきらないbit列は切り捨てられます。どうしてもダウンキャストする必要がある場合は、小さい型の範囲を調べて、入りきらない場合の対処についても独自で実装する必要があります。
 
 <h4>（３）プリミティブラッパークラス</h4>
@@ -39,12 +39,12 @@ Character|Character characterObj = Character.valueOf(cValue);|char cValue = char
 Byte (Short, Integer, Long, Float, DoubleもByteと同様)|Byte byteObj = Byte.valueOf(bValue);|byte bValue = byteObj.byteValue();<br>//NullPointerException<br><br>short sValue = byteObj.shortValue();<br>//NullPointerException<br><br>int iValue = byteObj.intValue();<br>//NullPointerException<br><br>long lValue = byteObj.longValue();<br>//NullPointerException<br><br>float fValue = byteObj.floatValue();<br>//NullPointerException<br><br>double dValue = byteObj.doubleValue();<br>//NullPointerException
 
 <h4>（４）auto-boxing conversion</h4>
-プリミティブ型からラッパークラスへの変換は明示しなくても変換できます。
+プリミティブ型からラッパークラスへの変換は明示しなくても変換できます。<br>
 ```java
 Integer obj = 10;
 ```
 <h4>（５）auto-unboxing conversion</h4>
-ラッパークラスからプリミティブ型への変換は明示しなくても変換できます。
+ラッパークラスからプリミティブ型への変換は明示しなくても変換できます。<br>
 ```java
 int value = Integer.valueOf(10);
 ```
