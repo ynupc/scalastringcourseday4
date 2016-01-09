@@ -41,7 +41,7 @@ JavaでStringと数値型を変換するには、数値型が参照型ではな�
 ***
 <h3>2.1　JavaのBooleanラッパークラスのparseBooleanメソッドによる文字列からのBooleanへの変換</h3>
 <img src="../image/string_course.007.jpeg" width="500px"><br>
-java.lang.BooleanのparseBooleanメソッドは大文字（Upper Case）や小文字（Lower Case）といったケースを無視して"true"の場合は```true```、それ以外は全て```false```を返します。StringクラスのtoBooleanメソッド（厳密にはScalaのStringはStringLikeでimplicit classで暗黙的に拡張されており、StringLike内でtoBooleanメソッドは実装されている）では、ケースを無視して"true"、"false"の場合以外は非検査例外IllegalArgumentExceptionが発生する。
+java.lang.BooleanのparseBooleanメソッドは大文字（Upper Case）や小文字（Lower Case）といったケースを無視して"true"の場合は```true```、それ以外は全て```false```を返します。StringクラスのtoBooleanメソッド（厳密にはScalaのStringはStringLikeでimplicit class に暗黙的に拡張されており、StringLike内でtoBooleanメソッドは実装されている）では、ケースを無視して"true"、"false"以外の場合は非検査例外IllegalArgumentExceptionが発生します。
 ```scala
   @Test
   def testParseBoolean(): Unit = {
@@ -52,8 +52,10 @@ java.lang.BooleanのparseBooleanメソッドは大文字（Upper Case）や小�
 ```
 ***
 <h3>2.2　N進数表記</h3>
+数値型をStringに変換するとき、一般的なtoStringメソッドで変換すると１０進数表記になります。そして、Stringから数値型に変換するとき、一般的なtoIntメソッドやtoFloatメソッドなどで変換するとStringを１０進数表記として変換する。数値型から１０進数以外のN進数表記のStringに変換する方法と１０進数以外のN進数表記のStringから数値型に変換する方法について説明します。
 <h4>2.2.1　特定の進数表記</h4>
 <img src="../image/string_course.008.jpeg" width="500px"><br>
+java.lang.Integer、java.lang.Long、java.lang.Float、java.lang.Doubleには特定の進数表記に変換するメソッドが用意されています。
 ```scala
 
   @Test
@@ -72,6 +74,7 @@ java.lang.BooleanのparseBooleanメソッドは大文字（Upper Case）や小�
 ```
 <h4>2.2.2　任意の進数表記</h4>
 <img src="../image/string_course.009.jpeg" width="500px"><br>
+java.lang.Integer、java.lang.Longは任意のN進数表記のStringに変換するtoStringメソッドを持っています。そして、java.lang.Byte、java.lang.Short、java.lang.Integer、java.lang.Longは任意のN進数表記のStringから数値型に変換するメソッドを持っています。
 ```scala
   @Test
   def testRadix1(): Unit = {
@@ -88,6 +91,8 @@ java.lang.BooleanのparseBooleanメソッドは大文字（Upper Case）や小�
 ```
 <h4>2.2.3　文字とN進数表記での数値の相互変換</h4>
 <img src="../image/string_course.010.jpeg" width="500px"><br>
+Character.digitメソッドやCharacter.getNumericValueメソッドで文字（Charやコードポイント）をN進数表記と解釈して数値型に変換できます。
+Character.digitメソッドは第二引数で与えられた基数Nで定義されない文字の変換については-1を返します。一方でCharacter.getNumericValueメソッドは基数Nを引数として受け取らないため、N=36の場合のCharacter.digitとほぼ同じように振舞います。なぜ36かというと、0-9の１０文字とa-zの２６文字を合計して３６文字が一般的にN進数表記で使用される文字だからです。定義される基数Nの最大値Character.MAX_RADIXも36が格納されています。基数３６を与えたCharacter.digitとCharacter.getNumericValueの違いは、ローマ数字で50を表す'\u216C'も50を返す点と文字が数値を表していても正の整数を表さない場合は-2を返す点です。
 ```scala
   @Test
   def testRadix2(): Unit = {
