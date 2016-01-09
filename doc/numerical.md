@@ -3,7 +3,7 @@
 <img src="../image/string_course.005.jpeg" width="500px"><br>
 JavaでStringと数値型の変換を学ぶには、数値型が参照型ではなく特殊なプリミティブ型であるために学ぶべきことが多くあります。  
 <h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
-Javaでの数値型を含むプリミティブ型とStringとの相互変換を説明しますが、それを説明する前にプリミティブ型同士の相互変換やプリミティブ型とプリミティブラッパークラスとの相互変換についても説明します。
+Javaでの数値型を含むプリミティブ型とStringとの相互変換を説明しますが、それを説明する前にプリミティブ型同士の相互変換やプリミティブ型とプリミティブラッパークラスとの相互変換についても説明します。Scalaでのみプログラミングをする人は読み飛ばしてください。
 <h4>（１）widening primitive conversion</h4>
 long (64bit) > int (32bit) > short (16bit) > byte (8bit)  
 double (64bit) > float (32bit)  
@@ -65,6 +65,17 @@ Float|String str = String.valueOf(fValue);<br>String str = Float.toString(fValue
 Double|String str = String.valueOf(dValue);<br>String str = Double.toString(dValue);<br>String str = Double.valueOf(dValue).toString();<br><br>//十六進数<br>String str = Double.toHexString(dValue);
 
 <h4>（７）Stringからプリミティブ型への変換</h4>
+
+ラッパークラス|String to プリミティブ型
+---|---
+Boolean|boolean flag = Boolean.parseBool(str);<br>boolean flag = Boolean.parseBoolean("True")<br>boolean flag = Boolean.parseBoolean("TRUE")<br>大文字小文字を無視した「true」のみを受け付ける。<br>それ以外はすべてfalse。「true」以外はnullであってもfalseを返すので例外はない。
+Character|１文字（char）の場合：<br><br>char ch = str.charAt(0);<br><br>１文字（サロゲートペアchar[]）の場合：<br><br>char[] ch = Character.toChars(str.codePointAt(0));<br><br>複数文字（char[]）の場合：<br><br>char[] charArray = str.toCharArray();<br>char[] charArray = new char[str.length()];<br>s.getChars(0, str.length(), charArray, 0);
+Byte|byte bValue = Byte.parseByte(str)<br>//NumberFormatException<br><br>strがN進数の場合<br>byte bValue = Byte.parseByte(str, N)}<br>//NumberFormatException
+Short|short sValue = Short.parseShort(str);<br>//NumberFormatException<br><br>strがN進数の場合<br>short sValue = Short.parseShort(str, N);<br>//NumberFormatException
+Integer|int iValue = Interger.parseInt(str);<br>//NumberFormatException<br><br>strがN進数の場合<br>int iValue = Integer.parseInt(str, N);<br>//NumberFormatException
+Long|long lValue = Long.parseLong(str);<br>//NumberFormatException<br><br>strがN進数の場合<br>long lValue = Long.parseLong(str, N);<br>//NumberFormatException
+Float|float fValue = Float.parseFloat(str);<br>//NumberFormatException
+Double|double dValue = Double.parseDouble(str);<br>//NumberFormatException
 
 <img src="../image/string_course.006.jpeg" width="500px"><br>
 一方でScalaは数値型も参照型であるために簡単に変換が可能です。ただし、<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/RuntimeException.html" target="_blank">RuntimeException</a>の一種である<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/NumberFormatException.html" target="_blank">NumberFormatException</a>（Booleanの場合のみ数値型ではないため<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/IllegalArgumentException.html" target="_blank">IllegalArgumentException</a>）に注意が必要です。
