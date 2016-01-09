@@ -1,6 +1,6 @@
 # 1.　Stringの文字コード変換
 文字コードで文字化けが起こる場合はIOで設定を直すのが一般的でStringはUTF-16BEとして復号された状態ですので、Stringから文字コードを変換するというのはあまり一般的な話ではないですが説明します。
-<h3>Charsetの正式名称（Canonical Name）とエイリアス</h3>
+<h3>1.1　Charsetの正式名称（Canonical Name）とエイリアス</h3>
 <img src="../image/string_course.002.jpeg" width="500px"><br>
 文字コードを扱う<a href="https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html" target="_blank">Charset</a>クラスには文字コードを代表する正式名称（Canonical Name）とその異表記であるエイリアスが存在します。例えば、正式名称「windows-31j」に対するエイリアスは「MS932」など、正式名称「Shift_JIS」に対するエイリアスは「shift-jis」や「sjis」などです。  
 <img src="../image/string_course.003.jpeg" width="500px"><br>
@@ -52,8 +52,9 @@ Charsetクラスでよく使われるメソッドをスライドに一覧にし�
   }
 ```
 ***
-<h3>文字コードの変換</h3>
+<h3>1.2　文字コードの変換</h3>
 <img src="/image/string_course.004.jpeg" width="500px"><br>
+スライドやサンプルコードは（１）UTF-16BEとしてStringが持っている文字列をEUC-JPのByte配列に変換してそれをUTF-8と解釈してUTF-16BEに変換することで文字化けが直りそうな場合や（２）UTF-16BEとしてStringが持っている文字列をByte配列に変換してそれをwindows-31jと解釈してUTF-16BEに変換することで文字化けが直りそうな場合に使います。特に（２）はWindowsのコマンドプロンプトのデフォルトの文字コードがwindows-31jなのでWindows上でProcessを投げるときの文字化け回避に使えます。なお、コマンドプロンプトの文字コードをUTF-8にしたいときは```chcp 65001```、デフォルトのwindows-31jに戻したいときは```chcp 932```で変更できます。
 ```scala
   @Test
   def testEncodingConverter(): Unit = {
