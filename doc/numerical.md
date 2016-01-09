@@ -1,7 +1,9 @@
 # 2.　Stringと数値型の相互変換
-数値型といってもCharは数値型ですがStringとCharの相互変換についてはDay 3で取り上げたのでここでは改めて取り上げません。さらにBooleanは数値型ではないですがここでは取り上げます。従って、Boolean、Byte、Short、Int、Long、Float、DoubleとStringとの相互変換について説明します。
+数値型といってもCharは数値型ですがStringとCharの相互変換についてはDay 3で取り上げたのでここでは改めて取り上げません。さらにBooleanは数値型ではないですがここでは取り上げます。従って、Boolean、Byte、Short、Int、Long、Float、DoubleとStringとの相互変換について説明します。  
 <img src="../image/string_course.005.jpeg" width="500px"><br>
+JavaでStringと数値型を変換するには、数値型が参照型ではなく特殊なプリミティブ型であるために学ぶべきことが多くあります。  
 <img src="../image/string_course.006.jpeg" width="500px"><br>
+一方でScalaは数値型も参照型であるために簡単に変換が可能です。ただし、<a href="" target="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/RuntimeException.html">RuntimeException</a>の一種である<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/NumberFormatException.html" target="_blank">NumberFormatException</a>（Booleanの場合のみ数値型ではないため<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/IllegalArgumentException.html" target="_blank">IllegalArgumentException</a>）に注意が必要です。
 ```scala
   @Test
   def testConversionsBetweenStringAndNum(): Unit = {
