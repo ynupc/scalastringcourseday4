@@ -41,12 +41,12 @@ Character|Character characterObj = Character.valueOf(cValue);|char cValue = char
 Byte (Short, Integer, Long, Float, DoubleもByteと同様)|Byte byteObj = Byte.valueOf(bValue);|byte bValue = byteObj.byteValue();<br>//NullPointerException<br><br>short sValue = byteObj.shortValue();<br>//NullPointerException<br><br>int iValue = byteObj.intValue();<br>//NullPointerException<br><br>long lValue = byteObj.longValue();<br>//NullPointerException<br><br>float fValue = byteObj.floatValue();<br>//NullPointerException<br><br>double dValue = byteObj.doubleValue();<br>//NullPointerException
 
 <h4>（４）auto-boxing conversion</h4>
-プリミティブ型からラッパークラスへの変換は、明示しなくても大丈夫です。
+プリミティブ型からラッパークラスへの変換は明示しなくても変換できます。
 ```java
 Integer obj = 10;
 ```
 <h4>（５）auto-unboxing conversion</h4>
-ラッパークラスからプリミティブ型への変換も、明示しなくても大丈夫です。
+ラッパークラスからプリミティブ型への変換は明示しなくても変換できます。
 ```java
 int value = Integer.valueOf(10);
 ```
