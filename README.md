@@ -14,7 +14,7 @@
 <strong><a href="doc/charset.md#12文字コードの変換">1.2　文字コードの変換</a></strong>  
 <a href="doc/charset.md#コラムmalformedinputexceptionとunmappablecharacterexceptionの回避方法">コラム：MalformedInputExceptionとUnmappableCharacterExceptionの回避方法</a> 
 
-<strong><a href="doc/numerical.md#2stringと数値型の相互変換">2.　Stringと数値型の相互変換</a></strong> 
+<strong><a href="doc/numerical.md#2stringと数値型の相互変換">2.　Stringと数値型の相互変換</a></strong>  
 <a href="doc/numerical.md#コラムjavaでのstringとプリミティブ型の相互変換">コラム：JavaでのStringとプリミティブ型の相互変換</a>  
 <a href="doc/numerical.md#１widening-primitive-conversion">（１）widening primitive conversion</a>  
 <a href="doc/numerical.md#２narrowing-primitive-conversion">（２）narrowing primitive conversion</a>  
