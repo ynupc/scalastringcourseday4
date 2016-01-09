@@ -54,7 +54,7 @@ Charsetクラスでよく使われるメソッドをスライドに一覧にし�
 ***
 <h3>1.2　文字コードの変換</h3>
 <img src="/image/string_course.004.jpeg" width="500px"><br>
-スライドやサンプルコードは（１）UTF-16BEとしてStringが持っている文字列をEUC-JPのByte配列に変換してそれをUTF-8と解釈してUTF-16BEに変換することで文字化けが直りそうな場合や（２）UTF-16BEとしてStringが持っている文字列をByte配列に変換してそれをwindows-31jと解釈してUTF-16BEに変換することで文字化けが直りそうな場合に使えるかもしれません。特に（２）はWindowsのコマンドプロンプトのデフォルトの文字コードがwindows-31jなのでWindows上でProcessを投げるときの文字化け回避に使えます。なお、コマンドプロンプトの文字コードをUTF-8にしたいときは```chcp 65001```、デフォルトのwindows-31jに戻したいときは```chcp 932```で変更できます。
+スライドやサンプルコードは（１）UTF-16BEとしてStringが持っている文字列をEUC-JPのByte配列に変換してそれをUTF-8と解釈してUTF-16BEに変換することで文字化けが直りそうな場合や（２）UTF-16BEとしてStringが持っている文字列をByte配列に変換してそれをwindows-31jと解釈してUTF-16BEに変換することで文字化けが直りそうな場合に使えるかもしれません。特に（２）はWindowsのコマンドプロンプトのデフォルトの文字コードがwindows-31jなのでWindows上でProcessを投げるときの文字化け回避に使えます。
 ```scala
   @Test
   def testEncodingConverter(): Unit = {
@@ -64,6 +64,8 @@ Charsetクラスでよく使われるメソッドをスライドに一覧にし�
   }
 ```
 ***
+<h3>コラム：コマンドプロンプトの文字コード変更</h3>
+コマンドプロンプトの文字コードをUTF-8にしたいときは```chcp 65001```、デフォルトのwindows-31jに戻したいときは```chcp 932```で変更できます。
 <h3>コラム：<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/MalformedInputException.html" target="_blank">MalformedInputException</a>と<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/UnmappableCharacterException.html" target="_blank">UnmappableCharacterException</a>の回避方法</h3>
 文字コードをIOで設定してもMalformedInputExceptionやUnmappableCharacterExceptionでファイルが読み取れない場合があります。特にウェブ上のHTMLファイルを読み取るときにしばしばこの問題が発生します。この問題が発生した場合は、<a href="http://www.scala-lang.org/api/current/index.html#scala.io.Codec" target="_blank">Codec</a>クラスや<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/CharsetDecoder.html" target="_blank">CharsetDecorder</a>クラス、<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/CharsetEncoder.html" target="_blank">ChrasetEncoder</a>クラスが持つonMalformedInputのメソッドやonUnmappableCharacterメソッドでExceptionを無視したり、特定のCharに置き換えたることができます。なおHTMLのCharsetがShift_JISとなっていた場合だとShift_JISの上位互換のwindows-31jで読み込むだけで上記のExceptionが回避できる場合もあります。
 ```scala
