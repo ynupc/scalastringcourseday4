@@ -1,5 +1,5 @@
 # 2.　Stringと数値型の相互変換
-数値型にはChar、Byte、Short、Int、Long、Float、Doubleがありますが、Charは数値型ですがStringとCharの相互変換についてはDay 3で取り上げたのでここでは改めて取り上げませんが、数字としてのCharやコードポイントを数値（Int）に変換する方法については説明します。さらにBooleanは数値型ではないですがここでは取り上げます。従って、Boolean、Byte、Short、Int、Long、Float、DoubleとStringとの相互変換について説明し、数字としてのCharやコードポイントを数値（Int）に変換についても説明します。  
+数値型にはChar、Byte、Short、Int、Long、Float、Doubleがありますが、Charは数値型ですがStringとCharの相互変換についてはDay 3で取り上げたのでここでは改めて取り上げませんが、数字としてのCharやコードポイントを数値（Int）に変換する方法については説明します。さらにBooleanは数値型ではないですがここでは取り上げます。従って、Boolean、Byte、Short、Int、Long、Float、DoubleとStringとの相互変換について説明し、数字としてのCharやコードポイントから数値（Int）への変換についても説明します。  
 <img src="../image/string_course.005.jpeg" width="500px"><br>
 JavaでStringと数値型の変換を学ぶには、数値型が参照型ではなく特殊なプリミティブ型であるために学ぶべきことが多くあります。  
 <h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
