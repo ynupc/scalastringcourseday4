@@ -51,15 +51,15 @@ java.lang.BooleanのparseBooleanメソッドは大文字（Upper Case）や小�
   }
 ```
 ***
-<h3>2.3　数字（Charまたはコードポイント）から数値（Int）への変換</h3>
+<h3>2.2　数字（Charまたはコードポイント）から数値（Int）への変換</h3>
 java.lang.Character.getNumericValueメソッドで数字（Charまたはコードポイント）から数値（Int）に変換できます。
 ```scala
 
 ```
 ***
-<h3>2.2　N進数表記</h3>
+<h3>2.3　N進数表記</h3>
 数値型をStringに変換するとき、一般的なtoStringメソッドで変換すると１０進数表記になります。そして、Stringから数値型に変換するとき、一般的なtoIntメソッドやtoFloatメソッドなどで変換するとStringを１０進数表記として変換する。数値型から１０進数以外のN進数表記のStringに変換する方法と１０進数以外のN進数表記のStringから数値型に変換する方法について説明します。
-<h4>2.2.1　特定の進数表記</h4>
+<h4>2.3.1　特定の進数表記</h4>
 <img src="../image/string_course.008.jpeg" width="500px"><br>
 java.lang.Integer、java.lang.Long、java.lang.Float、java.lang.Doubleには特定の進数表記に変換するメソッドが用意されています。
 ```scala
@@ -78,7 +78,7 @@ java.lang.Integer、java.lang.Long、java.lang.Float、java.lang.Doubleには特
     assert(java.lang.Double.toHexString(6.67408D) == "0x1.ab242070b8cfcp2")
   }
 ```
-<h4>2.2.2　任意の進数表記</h4>
+<h4>2.3.2　任意の進数表記</h4>
 <img src="../image/string_course.009.jpeg" width="500px"><br>
 java.lang.Integer、java.lang.Longは任意のN進数表記のStringに変換するtoStringメソッドを持っています。そして、java.lang.Byte、java.lang.Short、java.lang.Integer、java.lang.Longは任意のN進数表記のStringから数値型に変換するメソッドを持っています。
 ```scala
@@ -95,7 +95,7 @@ java.lang.Integer、java.lang.Longは任意のN進数表記のStringに変換す
     assert(java.lang.Long.parseLong("22", 4)   == 10L)
   }
 ```
-<h4>2.2.3　文字とN進数表記での数値の相互変換</h4>
+<h4>2.3.3　文字とN進数表記での数値の相互変換</h4>
 <img src="../image/string_course.010.jpeg" width="500px"><br>
 Character.digitメソッドで文字（Charやコードポイント）をN進数表記と解釈して数値型に変換できます。
 Character.digitメソッドは第二引数で与えられた基数Nで定義されない文字の変換については-1を返します。
