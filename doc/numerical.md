@@ -2,6 +2,14 @@
 数値型といってもChar、Byte、Short、Int、Long、Float、Doubleといったものがありますが、Charは数値型ですがStringとCharの相互変換についてはDay 3で取り上げたのでここでは改めて取り上げませんが、数字としてのCharやコードポイントを数値（Int）に変換する方法については説明します。さらにBooleanは数値型ではないですがここでは取り上げます。従って、Boolean、Byte、Short、Int、Long、Float、DoubleとStringとの相互変換について説明し、数字としてのCharやコードポイントを数値（Int）に変換についても説明します。  
 <img src="../image/string_course.005.jpeg" width="500px"><br>
 JavaでStringと数値型の変換を学ぶには、数値型が参照型ではなく特殊なプリミティブ型であるために学ぶべきことが多くあります。  
+<h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
+<h4>（１）widening primitive conversion</h4>
+<h4>（２）narrowing primitive conversion</h4>
+<h4>（３）プリミティブラッパークラス</h4>
+<h4>（４）auto-boxing conversion</h4>
+<h4>（５）auto-unboxing conversion</h4>
+<h4>（６）プリミティブ型からStringへの変換</h4>
+<h4>（７）Stringからプリミティブ型への変換</h4>
 <img src="../image/string_course.006.jpeg" width="500px"><br>
 一方でScalaは数値型も参照型であるために簡単に変換が可能です。ただし、<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/RuntimeException.html" target="_blank">RuntimeException</a>の一種である<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/NumberFormatException.html" target="_blank">NumberFormatException</a>（Booleanの場合のみ数値型ではないため<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/IllegalArgumentException.html" target="_blank">IllegalArgumentException</a>）に注意が必要です。
 ```scala
