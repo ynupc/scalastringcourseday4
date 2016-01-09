@@ -5,6 +5,7 @@ JavaでStringと数値型の変換を学ぶには、数値型が参照型では�
 <h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
 Javaでの数値型を含むプリミティブ型とStringとの相互変換を説明しますが、それを説明する前にプリミティブ型同士の相互変換やプリミティブ型とプリミティブラッパークラスとの相互変換についても説明します。Scalaでのみプログラミングをする人は読み飛ばしてください。
 <h4>（１）widening primitive conversion</h4>
+test  
 long (64bit) &gt; int (32bit) &gt; short (16bit) &gt; byte (8bit)  
 double (64bit) &gt; float (32bit)  
 容量が大きい型への代入は暗黙に変換されます。
