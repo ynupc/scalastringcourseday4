@@ -39,8 +39,9 @@ JavaでStringと数値型を変換するには、数値型が参照型ではな�
   }
 ```
 ***
-<h3>JavaのBooleanラッパークラスのparseBooleanメソッドによる文字列からのBooleanへの変換</h3>
+<h3>2.1　JavaのBooleanラッパークラスのparseBooleanメソッドによる文字列からのBooleanへの変換</h3>
 <img src="../image/string_course.007.jpeg" width="500px"><br>
+java.lang.BooleanのparseBooleanメソッドは大文字（Upper Case）や小文字（Lower Case）といったケースを無視して"true"の場合は```true```、それ以外は全て```false```を返します。StringクラスのtoBooleanメソッド（厳密にはScalaのStringはStringLikeでimplicit classで暗黙的に拡張されており、StringLike内でtoBooleanメソッドは実装されている）では、ケースを無視して"true"、"false"の場合以外は非検査例外IllegalArgumentExceptionが発生する。
 ```scala
   @Test
   def testParseBoolean(): Unit = {
@@ -50,8 +51,8 @@ JavaでStringと数値型を変換するには、数値型が参照型ではな�
   }
 ```
 ***
-<h3>N進数表記</h3>
-<h4>特定の進数表記</h4>
+<h3>2.2　N進数表記</h3>
+<h4>2.2.1　特定の進数表記</h4>
 <img src="../image/string_course.008.jpeg" width="500px"><br>
 ```scala
 
@@ -69,7 +70,7 @@ JavaでStringと数値型を変換するには、数値型が参照型ではな�
     assert(java.lang.Double.toHexString(6.67408D) == "0x1.ab242070b8cfcp2")
   }
 ```
-<h4>任意の進数表記</h4>
+<h4>2.2.2　任意の進数表記</h4>
 <img src="../image/string_course.009.jpeg" width="500px"><br>
 ```scala
   @Test
@@ -85,7 +86,7 @@ JavaでStringと数値型を変換するには、数値型が参照型ではな�
     assert(java.lang.Long.parseLong("22", 4)   == 10L)
   }
 ```
-<h4>文字とN進数表記での数値の相互変換</h4>
+<h4>2.2.3　文字とN進数表記での数値の相互変換</h4>
 <img src="../image/string_course.010.jpeg" width="500px"><br>
 ```scala
   @Test
