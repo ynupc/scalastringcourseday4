@@ -2,9 +2,9 @@
 文字コードで文字化けが起こる場合はIOで設定を直すのが一般的でStringはUTF-16BEとして復号された状態ですので、Stringから文字コードを変換するというのはあまり一般的な話ではないですが説明します。
 <h3>Charsetの正式名称（Canonical Name）とエイリアス</h3>
 <img src="../image/string_course.002.jpeg" width="500px"><br>
-文字コードを扱うCharsetクラスには文字コードを代表する正式名称（Canonical Name）とその異表記であるエイリアスが存在します。例えば、正式名称「windows-31j」に対するエイリアスは「MS932」など、正式名称「Shift_JIS」に対するエイリアスは「shift-jis」や「sjis」などです。  
+文字コードを扱う<a href="https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html" target="_blank">Charset</a>クラスには文字コードを代表する正式名称（Canonical Name）とその異表記であるエイリアスが存在します。例えば、正式名称「windows-31j」に対するエイリアスは「MS932」など、正式名称「Shift_JIS」に対するエイリアスは「shift-jis」や「sjis」などです。  
 <img src="../image/string_course.003.jpeg" width="500px"><br>
-<a href="https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html" target="_blank">Charset</a>クラスでよく使われるメソッドをスライドに一覧にしました。いくつかの文字コード（UTF-8、UTF_16、UTF_16BE、	UTF_16LE、US_ASCII、ISO_8859_1）は<a href="https://docs.oracle.com/javase/8/docs/api/java/nio/charset/StandardCharsets.html" target="_blank">StandardCharsets</a>クラスでpublic static変数として存在します。それら以外はCharset.forNameメソッドから取得できます。
+Charsetクラスでよく使われるメソッドをスライドに一覧にしました。いくつかの文字コード（UTF-8、UTF_16、UTF_16BE、	UTF_16LE、US_ASCII、ISO_8859_1）は<a href="https://docs.oracle.com/javase/8/docs/api/java/nio/charset/StandardCharsets.html" target="_blank">StandardCharsets</a>クラスでpublic static変数として存在します。それら以外はCharset.forNameメソッドから取得できます。
 サンプルコードを実行すると自身の環境で定義されている全ての文字コードの正式名称とそのエイリアスが標準出力されます。
 ```scala
   @Test
