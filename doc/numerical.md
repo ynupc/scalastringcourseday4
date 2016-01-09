@@ -7,15 +7,19 @@ Javaでの数値型を含むプリミティブ型とStringとの相互変換を�
 <h4>（１）widening primitive conversion</h4>
 long (64bit) > int (32bit) > short (16bit) > byte (8bit)  
 double (64bit) > float (32bit)  
-容量が大きい型への代入は暗黙に変換されます。  
+容量が大きい型への代入は暗黙に変換されます。
+
 ```java
 double value = 10.0F;
 ```
+
 <h4>（２）narrowing primitive conversion</h4>
 容量が小さい型への代入は明示的に型を指定してキャストする必要があります。
+
 ```java
 int value = (int) 10L;
 ```
+
 下の桁から数えて型に入りきらないbit列は切り捨てられます。どうしてもダウンキャストする必要がある場合は、小さい型の範囲を調べて、入りきらない場合の対処についても独自で実装する必要があります。
 <h4>（３）プリミティブラッパークラス</h4>
 プリミティブ型のラッパークラスのことをプリミティブラッパークラスと言います。
