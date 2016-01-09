@@ -3,13 +3,52 @@
 <img src="../image/string_course.005.jpeg" width="500px"><br>
 JavaでStringと数値型の変換を学ぶには、数値型が参照型ではなく特殊なプリミティブ型であるために学ぶべきことが多くあります。  
 <h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
+Javaでの数値型を含むプリミティブ型とStringとの相互変換を説明しますが、それを説明する前にプリミティブ型同士の相互変換やプリミティブ型とプリミティブラッパークラスとの相互変換についても説明します。
 <h4>（１）widening primitive conversion</h4>
+long (64bit) > int (32bit) > short (16bit) > byte (8bit)  
+double (64bit) > float (32bit)  
+容量が大きい型への代入は暗黙に変換されます。  
+```java
+double value = 10.0F;
+```
 <h4>（２）narrowing primitive conversion</h4>
+容量が小さい型への代入は明示的に型を指定してキャストする必要があります。
+```java
+int value = (int) 10L;
+```
+下の桁から数えて型に入りきらないbit列は切り捨てられます。どうしてもダウンキャストする必要がある場合は、小さい型の範囲を調べて、入りきらない場合の対処についても独自で実装する必要があります。
 <h4>（３）プリミティブラッパークラス</h4>
+プリミティブ型のラッパークラスのことをプリミティブラッパークラスと言います。
+次の表はプリミティブ型とプリミティブラッパークラスの対応表です。
+
+&nbsp;|プリミティブ型|ラッパークラス
+---|---|---
+1bitの真偽値|boolean|java.lang.Boolean
+16bitのUnicode文字|char|java.lang.Character
+8bitの符号付き整数|byte|java.lang.Byte
+16bitの符号付き整数|short|java.lang.Short
+32bitの符号付き整数|int|java.lang.Integer
+64bitの符号付き整数|long|java.lang.Long
+32bitの浮動小数|float|java.lang.Float
+64bitの浮動小数|double|java.lang.Double
+
+プリミティブ型の比較に==は使えますが、ラッパークラスの比較にはequalsメソッドを使います。メモリ上ではプリミティブ型はスタック領域に乗りますが、ラッパークラスは参照型なので参照がスタック領域にオブジェクトはヒープ領域に乗ります。
+
 <h4>（４）auto-boxing conversion</h4>
+プリミティブ型からラッパークラスへの変換は、明示しなくても大丈夫です。
+```java
+Integer obj = 10;
+```
 <h4>（５）auto-unboxing conversion</h4>
+ラッパークラスからプリミティブ型への変換も、明示しなくても大丈夫です。
+```java
+int value = Integer.valueOf(10);
+```
+ラッパークラスがnullだとNullPointerExceptionが発生するため注意が必要です。
 <h4>（６）プリミティブ型からStringへの変換</h4>
+
 <h4>（７）Stringからプリミティブ型への変換</h4>
+
 <img src="../image/string_course.006.jpeg" width="500px"><br>
 一方でScalaは数値型も参照型であるために簡単に変換が可能です。ただし、<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/RuntimeException.html" target="_blank">RuntimeException</a>の一種である<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/NumberFormatException.html" target="_blank">NumberFormatException</a>（Booleanの場合のみ数値型ではないため<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/IllegalArgumentException.html" target="_blank">IllegalArgumentException</a>）に注意が必要です。
 ```scala
