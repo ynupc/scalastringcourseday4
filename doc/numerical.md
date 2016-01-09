@@ -110,10 +110,10 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
     assert(minRadix == 2)
 
     val numeric: Char = 'G'
-    //'G'のCode Pointを取得する
+    //'G'のコードポイントを取得する
     val codePoint: Int = numeric.toString.codePointAt(0)
 
-    //'G'のCode Pointは71
+    //'G'のコードポイントは71
     assert(codePoint == 71)
 
     //Character.digit
