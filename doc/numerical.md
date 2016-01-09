@@ -53,6 +53,18 @@ int value = Integer.valueOf(10);
 ラッパークラスがnullだとNullPointerExceptionが発生するため注意が必要です。
 <h4>（６）プリミティブ型からStringへの変換</h4>
 
+ラッパークラス|プリミティブ型 to String
+---|---
+Boolean|String str = String.valueOf(flag);<br>String str = Boolean.toString(flag);<br>String str = Boolean.valueOf(flag).toString();<br><br>trueかfalseを返します。
+Character|１文字（char）の場合：<br>String str = String.valueOf(cValue);<br>String str = Character.toString(cValue);<br>String str = Character.valueOf(cValue).toString();<br><br>１文字（サロゲートペアchar[]）の場合：<br>if (char_array.length() == 2 &&<br>	Character.isSurrogatePair(char_array[0], char_array[1])) {<br><br>	String str = Character.getName(<br>		Character.toCodePoint(char_array[0], char_array[1]));<br>	//字種情報がStringで返ります。<br>}<br><br>１文字（サロゲートペアchar[]）<br>もしくは複数文字（char[]）の場合：<br><br>String str = new String(charArray);<br>String str = CharBuffer.wrap(charArray).toString();<br>//new Stringの方がCharBuffer.wrapしてtoStringするより高速<br>
+Byte|String str = String.valueOf(bValue);<br>String str = Byte.toString(bValue);<br>String str = Boolean.valueOf(bValue).toString();
+Short|String str = String.valueOf(sValue);<br>String str = Short.toString(sValue);<br>String str = Short.valueOf(sValue).toString();<br>
+Integer|String str = String.valueOf(iValue);<br>String str = Integer.toString(iValue);<br>String str = Integer.valueOf(iValue).toString();<br><br>//二進数<br>String str = Integer.toBinaryString(iValue);<br><br>
+//八進数<br>String str = Integer.toOctalString(iValue);<br><br>//十六進数<br>String str = Integer.toHexString(iValue);<br><br>//N進数<br>String str = Integer.toString(iValue, N);
+Long|String str = String.valueOf(lValue);<br>String str = Long.toString(lValue);<br>String str = Long.valueOf(lValue).toString();<br><br>//二進数<br>String str = Long.toBinaryString(lValue);<br><br>//八進数<br>String str = Long.toOctalString(lValue);<br><br>//十六進数<br>String str = Long.toHexString(lValue);<br><br>//N進数<br>String str = Long.toString(lValue, N);
+Float|String str = String.valueOf(fValue);<br>String str = Float.toString(fValue);<br>String str = Float.valueOf(fValue).toString();<br><br>//十六進数<br>String str = Float.toHexString(fValue);
+Double|String str = String.valueOf(dValue);<br>String str = Double.toString(dValue);<br>String str = Double.valueOf(dValue).toString();<br><br>//十六進数<br>String str = Double.toHexString(dValue);
+
 <h4>（７）Stringからプリミティブ型への変換</h4>
 
 <img src="../image/string_course.006.jpeg" width="500px"><br>
