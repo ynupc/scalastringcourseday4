@@ -16,8 +16,8 @@
 
 <strong><a href="doc/numerical.md#2stringと数値型の相互変換">2.　Stringと数値型の相互変換</a></strong>  
 <strong><a href="doc/numerical.md#21javaのbooleanラッパークラスのparsebooleanメソッドによる文字列からのbooleanへの変換">2.1　JavaのBooleanラッパークラスのparseBooleanメソッドによる文字列からのBooleanへの変換</a></strong>  
-<strong><a href="doc/numerical.md#23数字charまたはコードポイントから数値intへの変換">2.3　数字（Charまたはコードポイント）から数値（Int）への変換</a></strong>
-<strong><a href="doc/numerical.md#22n進数表記">2.2　N進数表記</a></strong>  
-<strong><a href="doc/numerical.md#221特定の進数表記">2.2.1　特定の進数表記</a></strong>  
-<strong><a href="doc/numerical.md#222任意の進数表記">2.2.2　任意の進数表記</a></strong>  
-<strong><a href="doc/numerical.md#223文字とn進数表記での数値の相互変換">2.2.3　文字とN進数表記での数値の相互変換</a></strong>  
+<strong><a href="doc/numerical.md#22数字charまたはコードポイントから数値intへの変換">2.2　数字（Charまたはコードポイント）から数値（Int）への変換</a></strong>  
+<strong><a href="doc/numerical.md#23n進数表記">2.3　N進数表記</a></strong>  
+<strong><a href="doc/numerical.md#231特定の進数表記">2.3.1　特定の進数表記</a></strong>  
+<strong><a href="doc/numerical.md#232任意の進数表記">2.3.2　任意の進数表記</a></strong>  
+<strong><a href="doc/numerical.md#233文字とn進数表記での数値の相互変換">2.3.3　文字とN進数表記での数値の相互変換</a></strong>  
