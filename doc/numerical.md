@@ -39,7 +39,7 @@ JavaでStringと数値型を変換するには、数値型が参照型ではな�
   }
 ```
 <h3>コラム：検査例外と非検査例外</h3>
-RuntimeExceptionは非検査例外と呼ばれ発生した場合は強制的にシステムが終了する。RuntimeExceptionではないExceptionは検査例外と呼ばれ、例外が発生した場合try-catch文でcatchされ、catch内で例外処理を書くことができる。Scalaで扱う検査例外はJava由来のものでありScala独自の検査例外は存在しません。Javaの検査例外についての問題点は<a href="http://qiita.com/Kokudori/items/0fe9181d8eec8d933c98" target="_blank">検査例外再考</a>をご覧下さい。
+RuntimeExceptionは非検査例外と呼ばれ発生した場合は強制的にシステムが終了します。RuntimeExceptionではないExceptionは検査例外と呼ばれ、例外が発生した場合try-catch文でcatchされ、catch内で例外処理を書くことができます。Scalaで扱う検査例外はJava由来のものでありScala独自の検査例外は存在しません。Javaの検査例外についての問題点は<a href="http://qiita.com/Kokudori/items/0fe9181d8eec8d933c98" target="_blank">検査例外再考</a>をご覧下さい。
 ***
 <h3>2.1　JavaのBooleanラッパークラスのparseBooleanメソッドによる文字列からのBooleanへの変換</h3>
 <img src="../image/string_course.007.jpeg" width="500px"><br>
