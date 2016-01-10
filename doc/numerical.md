@@ -353,7 +353,7 @@ java.lang.Integer、java.lang.Longは任意のN進数表記のStringに変換す
 <img src="../image/string_course.010.jpeg" width="500px"><br>
 Character.digitメソッドで文字（Charやコードポイント）をN進数表記と解釈して数値型に変換できます。
 Character.digitメソッドは第二引数で与えられた基数Nで定義されない文字の変換については-1を返します。
-数字（Charやコードポイント）を数値に変換するCharacter.getNumericValueメソッドは、N=36の場合のCharacter.digitメソッドに似た振舞いをします。なぜ36かというと、0-9の10文字とa-zの26文字を合計して36文字が一般的にN進数表記で使用される文字だからです。定義される基数Nの最大値Character.MAX_RADIXにも36が格納されています。基数36を与えたCharacter.digitメソッドとCharacter.getNumericValueメソッドの違いは、Character.getNumericValueメソッドはN進数と関係ない数字（ローマ数字で50を表す'\u216C'、漢数字で0を表す'〇'など）に対しても数値を返す点と文字が数字ではない場合は-1を返しますが文字が数字であっても正の整数を表さない場合は-2を返す点です。<h3></h3>
+数字（Charやコードポイント）を数値に変換するCharacter.getNumericValueメソッドは、N=36の場合のCharacter.digitメソッドに似た振舞いをします。なぜ36かというと、0-9の10文字とa-zの26文字を合計して36文字が一般的にN進数表記で使用される文字だからです。定義される基数Nの最大値Character.MAX_RADIXにも36が格納されています。基数36を与えたCharacter.digitメソッドとCharacter.getNumericValueメソッドの違いは、Character.getNumericValueメソッドはN進数と関係ない数字（ローマ数字で50を表す'\u216C'、漢数字で0を表す'〇'など）に対しても数値を返す点と文字が数字ではない場合は-1を返しますが文字が数字であっても正の整数を表さない場合は-2を返す点です。
 ```scala
   @Test
   def testRadix2(): Unit = {
@@ -392,7 +392,7 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
 ***
 <h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
 Javaでの数値型を含むプリミティブ型とStringとの相互変換を説明しますが、それを説明する前にプリミティブ型同士の相互変換やプリミティブ型とプリミティブラッパークラスとの相互変換についても説明します。Scalaでのみプログラミングをする人は読み飛ばしてください。
-<h4>（１）widening primitive conversion</h4><h3></h3>
+<h4>（１）widening primitive conversion</h4>
 ```java
 double value = 10.0F;
 ```
@@ -400,7 +400,7 @@ double value = 10.0F;
 long (64bit) &gt; int (32bit) &gt; short (16bit) &gt; byte (8bit)<br>
 double (64bit) &gt; float (32bit)  
 
-<h4>（２）narrowing primitive conversion</h4><n3></h3>
+<h4>（２）narrowing primitive conversion</h4>
 ```java
 int value = (int) 10L;
 ```
@@ -430,12 +430,12 @@ Boolean|Boolean booleanObj = Boolean.valueOf(flag);|boolean flag = booleanObj.bo
 Character|Character characterObj = Character.valueOf(cValue);|char cValue = character_obj.charValue();<br>//NullPointerException
 Byte (Short, Integer, Long, Float, DoubleもByteと同様)|Byte byteObj = Byte.valueOf(bValue);|byte bValue = byteObj.byteValue();<br>//NullPointerException<br><br>short sValue = byteObj.shortValue();<br>//NullPointerException<br><br>int iValue = byteObj.intValue();<br>//NullPointerException<br><br>long lValue = byteObj.longValue();<br>//NullPointerException<br><br>float fValue = byteObj.floatValue();<br>//NullPointerException<br><br>double dValue = byteObj.doubleValue();<br>//NullPointerException
 
-<h4>（４）auto-boxing conversion</h4><h3></h3>
+<h4>（４）auto-boxing conversion</h4>
 ```java
 Integer obj = 10;
 ```
 プリミティブ型からラッパークラスへの変換は明示しなくても変換できます。
-<h4>（５）auto-unboxing conversion</h4><h3></h3>
+<h4>（５）auto-unboxing conversion</h4>
 ```java
 int value = Integer.valueOf(10);
 ```
