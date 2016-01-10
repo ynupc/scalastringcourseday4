@@ -458,5 +458,6 @@ Integer|int iValue = Interger.parseInt(str);<br>//NumberFormatException<br><br>s
 Long|long lValue = Long.parseLong(str);<br>//NumberFormatException<br><br>strがN進数の場合<br>long lValue = Long.parseLong(str, N);<br>//NumberFormatException
 Float|float fValue = Float.parseFloat(str);<br>//NumberFormatException
 Double|double dValue = Double.parseDouble(str);<br>//NumberFormatException
+***
 <h3>コラム：検査例外と非検査例外</h3>
 RuntimeExceptionは非検査例外と呼ばれ発生した場合は強制的にシステムが終了します。RuntimeExceptionではないExceptionは検査例外と呼ばれ、例外が発生した場合try-catch文でcatchされ、catch内で例外処理を書くことができます。Scalaで扱う検査例外はJava由来のものでありScala独自の検査例外は存在しません。Javaの検査例外についての問題点は<a href="http://qiita.com/Kokudori/items/0fe9181d8eec8d933c98" target="_blank">検査例外再考</a>をご覧下さい。
