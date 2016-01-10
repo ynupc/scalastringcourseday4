@@ -63,8 +63,8 @@ Charsetクラスでよく使われるメソッドをスライドに一覧にし�
     val toMs932 = new String(str.getBytes, "MS932")
   }
 ```
-Windowsのコマンドプロンプトの文字コード変更については<a href="#">コラム：Windowsのコマンドプロンプトの文字コード変更</a>、
-MalformedInputExceptionとUnmappableCharacterExceptionの回避方法については<a href="#">コラム：MalformedInputExceptionとUnmappableCharacterExceptionの回避方法</a>を参照ください。
+Windowsのコマンドプロンプトの文字コード変更については<a href="#コラムwindowsのコマンドプロンプトの文字コード変更">コラム：Windowsのコマンドプロンプトの文字コード変更</a>、
+MalformedInputExceptionとUnmappableCharacterExceptionの回避方法については<a href="#コラムmalformedinputexceptionとunmappablecharacterexceptionの回避方法">コラム：MalformedInputExceptionとUnmappableCharacterExceptionの回避方法</a>を参照ください。
 ***
 <h3>コラム：Windowsのコマンドプロンプトの文字コード変更</h3>
 Windowsのコマンドプロンプトの文字コードをUTF-8にしたいときは```chcp 65001```、デフォルトのwindows-31jに戻したいときは```chcp 932```で変更できます。
