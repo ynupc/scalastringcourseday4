@@ -2,76 +2,7 @@
 数値型にはChar、Byte、Short、Int、Long、Float、Doubleがありますが、Charは数値型ですがStringとCharの相互変換についてはDay 3で取り上げたのでここでは改めて取り上げませんが、数字としてのCharやコードポイントを数値（Int）に変換する方法については説明します。さらにBooleanは数値型ではないですがここでは取り上げます。従って、Boolean、Byte、Short、Int、Long、Float、DoubleとStringとの相互変換について説明し、数字としてのCharやコードポイントから数値（Int）への変換についても説明します。  
 <img src="../image/string_course.005.jpeg" width="500px"><br>
 JavaでStringと数値型の変換を学ぶには、数値型が参照型ではなく特殊なプリミティブ型であるために学ぶべきことが多くあります。  
-<h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
-Javaでの数値型を含むプリミティブ型とStringとの相互変換を説明しますが、それを説明する前にプリミティブ型同士の相互変換やプリミティブ型とプリミティブラッパークラスとの相互変換についても説明します。Scalaでのみプログラミングをする人は読み飛ばしてください。
-<h4>（１）widening primitive conversion</h4>
-double value = 10.0F;<br><br>
-容量が大きい型への代入は暗黙に変換されます。<br>
-long (64bit) &gt; int (32bit) &gt; short (16bit) &gt; byte (8bit)<br>
-double (64bit) &gt; float (32bit)  
-
-<h4>（２）narrowing primitive conversion</h4>
-int value = (int) 10L;<br><br>
-容量が小さい型への代入は明示的に型を指定してキャストする必要があります。  <br><br>
-下の桁から数えて型に入りきらないbit列は切り捨てられます。どうしてもダウンキャストする必要がある場合は、小さい型の範囲を調べて、入りきらない場合の対処についても独自で実装する必要があります。
-
-<h4>（３）プリミティブラッパークラス</h4>
-
-&nbsp;|プリミティブ型|ラッパークラス
----|---|---
-1bitの真偽値|boolean|java.lang.Boolean
-16bitのUnicode文字|char|java.lang.Character
-8bitの符号付き整数|byte|java.lang.Byte
-16bitの符号付き整数|short|java.lang.Short
-32bitの符号付き整数|int|java.lang.Integer
-64bitの符号付き整数|long|java.lang.Long
-32bitの浮動小数|float|java.lang.Float
-64bitの浮動小数|double|java.lang.Double
-
-プリミティブ型のラッパークラスのことをプリミティブラッパークラスと言います。上の表はプリミティブ型とプリミティブラッパークラスの対応表です。  
-
-プリミティブ型の等値比較に==演算子を使いますが、ラッパークラスの等値比較にはequalsメソッドを使います。メモリ上ではプリミティブ型はスタック領域に乗りますが、ラッパークラスは参照型なので参照がスタック領域にオブジェクトはヒープ領域に乗ります。プリミティブ型とプリミティブラッパークラスの変換について次の表にまとめます。  
-
-ラッパークラス|プリミティブ型<br>to ラッパークラス|ラッパークラス<br>to プリミティブ型
----|---|---
-Boolean|Boolean booleanObj = Boolean.valueOf(flag);|boolean flag = booleanObj.booleanValue();<br>NullPointerException
-Character|Character characterObj = Character.valueOf(cValue);|char cValue = character_obj.charValue();<br>//NullPointerException
-Byte (Short, Integer, Long, Float, DoubleもByteと同様)|Byte byteObj = Byte.valueOf(bValue);|byte bValue = byteObj.byteValue();<br>//NullPointerException<br><br>short sValue = byteObj.shortValue();<br>//NullPointerException<br><br>int iValue = byteObj.intValue();<br>//NullPointerException<br><br>long lValue = byteObj.longValue();<br>//NullPointerException<br><br>float fValue = byteObj.floatValue();<br>//NullPointerException<br><br>double dValue = byteObj.doubleValue();<br>//NullPointerException
-
-<h4>（４）auto-boxing conversion</h4>
-Integer obj = 10;<br><br>
-プリミティブ型からラッパークラスへの変換は明示しなくても変換できます。
-<h4>（５）auto-unboxing conversion</h4>
-int value = Integer.valueOf(10);<br><br>
-ラッパークラスからプリミティブ型への変換は明示しなくても変換できます。<br>
-ラッパークラスがnullだとNullPointerExceptionが発生するため注意が必要です。
-<h4>（６）プリミティブ型からStringへの変換</h4>
-
-ラッパークラス|プリミティブ型 to String
----|---
-Boolean|String str = String.valueOf(flag);<br>String str = Boolean.toString(flag);<br>String str = Boolean.valueOf(flag).toString();<br><br>trueかfalseを返します。
-Character|１文字（char）の場合：<br>String str = String.valueOf(cValue);<br>String str = Character.toString(cValue);<br>String str = Character.valueOf(cValue).toString();<br><br>１文字（サロゲートペアchar[]）の場合：<br>if (char_array.length() == 2 &&<br>	Character.isSurrogatePair(char_array[0], char_array[1])) {<br><br>	String str = Character.getName(<br>		Character.toCodePoint(char_array[0], char_array[1]));<br>	//Character.getNameメソドは字種情報をStringで返します。<br>}<br><br>１文字（サロゲートペアchar[]）<br>もしくは複数文字（char[]）の場合：<br><br>String str = new String(charArray);<br>String str = CharBuffer.wrap(charArray).toString();<br>//new Stringの方がCharBuffer.wrapしてtoStringするより高速<br>
-Byte|String str = String.valueOf(bValue);<br>String str = Byte.toString(bValue);<br>String str = Boolean.valueOf(bValue).toString();
-Short|String str = String.valueOf(sValue);<br>String str = Short.toString(sValue);<br>String str = Short.valueOf(sValue).toString();<br>
-Integer|String str = String.valueOf(iValue);<br>String str = Integer.toString(iValue);<br>String str = Integer.valueOf(iValue).toString();<br><br>//二進数<br>String str = Integer.toBinaryString(iValue);<br><br>//八進数<br>String str = Integer.toOctalString(iValue);<br><br>//十六進数<br>String str = Integer.toHexString(iValue);<br><br>//N進数<br>String str = Integer.toString(iValue, N);
-Long|String str = String.valueOf(lValue);<br>String str = Long.toString(lValue);<br>String str = Long.valueOf(lValue).toString();<br><br>//二進数<br>String str = Long.toBinaryString(lValue);<br><br>//八進数<br>String str = Long.toOctalString(lValue);<br><br>//十六進数<br>String str = Long.toHexString(lValue);<br><br>//N進数<br>String str = Long.toString(lValue, N);
-Float|String str = String.valueOf(fValue);<br>String str = Float.toString(fValue);<br>String str = Float.valueOf(fValue).toString();<br><br>//十六進数<br>String str = Float.toHexString(fValue);
-Double|String str = String.valueOf(dValue);<br>String str = Double.toString(dValue);<br>String str = Double.valueOf(dValue).toString();<br><br>//十六進数<br>String str = Double.toHexString(dValue);
-
-<h4>（７）Stringからプリミティブ型への変換</h4>
-
-ラッパークラス|String to プリミティブ型
----|---
-Boolean|boolean flag = Boolean.parseBool(str);<br>boolean flag = Boolean.parseBoolean("True")<br>boolean flag = Boolean.parseBoolean("TRUE")<br>大文字小文字を無視した「true」のみを受け付ける。<br>それ以外はすべてfalse。「true」以外はnullであってもfalseを返すので例外はない。
-Character|１文字（char）の場合：<br><br>char ch = str.charAt(0);<br><br>１文字（サロゲートペアchar[]）の場合：<br><br>char[] ch = Character.toChars(str.codePointAt(0));<br><br>複数文字（char[]）の場合：<br><br>char[] charArray = str.toCharArray();<br>char[] charArray = new char[str.length()];<br>s.getChars(0, str.length(), charArray, 0);
-Byte|byte bValue = Byte.parseByte(str)<br>//NumberFormatException<br><br>strがN進数の場合<br>byte bValue = Byte.parseByte(str, N)}<br>//NumberFormatException
-Short|short sValue = Short.parseShort(str);<br>//NumberFormatException<br><br>strがN進数の場合<br>short sValue = Short.parseShort(str, N);<br>//NumberFormatException
-Integer|int iValue = Interger.parseInt(str);<br>//NumberFormatException<br><br>strがN進数の場合<br>int iValue = Integer.parseInt(str, N);<br>//NumberFormatException
-Long|long lValue = Long.parseLong(str);<br>//NumberFormatException<br><br>strがN進数の場合<br>long lValue = Long.parseLong(str, N);<br>//NumberFormatException
-Float|float fValue = Float.parseFloat(str);<br>//NumberFormatException
-Double|double dValue = Double.parseDouble(str);<br>//NumberFormatException
-
-***
+JavaでのStringとプリミティブ型との相互変換については<a href="#">コラム：JavaでのStringとプリミティブ型の相互変換</a>を参照ください。  
 <img src="../image/string_course.006.jpeg" width="500px"><br>
 一方でScalaは数値型も参照型であるために簡単に変換が可能です。ただし、<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/RuntimeException.html" target="_blank">RuntimeException</a>の一種である<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/NumberFormatException.html" target="_blank">NumberFormatException</a>（Booleanの場合のみ数値型ではないため<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/IllegalArgumentException.html" target="_blank">IllegalArgumentException</a>）に注意が必要です。
 ```scala
@@ -108,8 +39,7 @@ Double|double dValue = Double.parseDouble(str);<br>//NumberFormatException
     //java.lang.NumberFormatException
   }
 ```
-<h3>コラム：検査例外と非検査例外</h3>
-RuntimeExceptionは非検査例外と呼ばれ発生した場合は強制的にシステムが終了します。RuntimeExceptionではないExceptionは検査例外と呼ばれ、例外が発生した場合try-catch文でcatchされ、catch内で例外処理を書くことができます。Scalaで扱う検査例外はJava由来のものでありScala独自の検査例外は存在しません。Javaの検査例外についての問題点は<a href="http://qiita.com/Kokudori/items/0fe9181d8eec8d933c98" target="_blank">検査例外再考</a>をご覧下さい。
+検査例外と非検査例外については<a href="#">コラム：検査例外と非検査例外</a>を参照ください。
 ***
 <h3>2.1　JavaのBooleanラッパークラスのparseBooleanメソッドによる文字列からのBooleanへの変換</h3>
 <img src="../image/string_course.007.jpeg" width="500px"><br>
@@ -459,3 +389,74 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
     assert(Character.getNumericValue(codePoint) == 16)
   }
 ```
+***
+<h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
+Javaでの数値型を含むプリミティブ型とStringとの相互変換を説明しますが、それを説明する前にプリミティブ型同士の相互変換やプリミティブ型とプリミティブラッパークラスとの相互変換についても説明します。Scalaでのみプログラミングをする人は読み飛ばしてください。
+<h4>（１）widening primitive conversion</h4>
+double value = 10.0F;<br><br>
+容量が大きい型への代入は暗黙に変換されます。<br>
+long (64bit) &gt; int (32bit) &gt; short (16bit) &gt; byte (8bit)<br>
+double (64bit) &gt; float (32bit)  
+
+<h4>（２）narrowing primitive conversion</h4>
+int value = (int) 10L;<br><br>
+容量が小さい型への代入は明示的に型を指定してキャストする必要があります。  <br><br>
+下の桁から数えて型に入りきらないbit列は切り捨てられます。どうしてもダウンキャストする必要がある場合は、小さい型の範囲を調べて、入りきらない場合の対処についても独自で実装する必要があります。
+
+<h4>（３）プリミティブラッパークラス</h4>
+
+&nbsp;|プリミティブ型|ラッパークラス
+---|---|---
+1bitの真偽値|boolean|java.lang.Boolean
+16bitのUnicode文字|char|java.lang.Character
+8bitの符号付き整数|byte|java.lang.Byte
+16bitの符号付き整数|short|java.lang.Short
+32bitの符号付き整数|int|java.lang.Integer
+64bitの符号付き整数|long|java.lang.Long
+32bitの浮動小数|float|java.lang.Float
+64bitの浮動小数|double|java.lang.Double
+
+プリミティブ型のラッパークラスのことをプリミティブラッパークラスと言います。上の表はプリミティブ型とプリミティブラッパークラスの対応表です。  
+
+プリミティブ型の等値比較に==演算子を使いますが、ラッパークラスの等値比較にはequalsメソッドを使います。メモリ上ではプリミティブ型はスタック領域に乗りますが、ラッパークラスは参照型なので参照がスタック領域にオブジェクトはヒープ領域に乗ります。プリミティブ型とプリミティブラッパークラスの変換について次の表にまとめます。  
+
+ラッパークラス|プリミティブ型<br>to ラッパークラス|ラッパークラス<br>to プリミティブ型
+---|---|---
+Boolean|Boolean booleanObj = Boolean.valueOf(flag);|boolean flag = booleanObj.booleanValue();<br>NullPointerException
+Character|Character characterObj = Character.valueOf(cValue);|char cValue = character_obj.charValue();<br>//NullPointerException
+Byte (Short, Integer, Long, Float, DoubleもByteと同様)|Byte byteObj = Byte.valueOf(bValue);|byte bValue = byteObj.byteValue();<br>//NullPointerException<br><br>short sValue = byteObj.shortValue();<br>//NullPointerException<br><br>int iValue = byteObj.intValue();<br>//NullPointerException<br><br>long lValue = byteObj.longValue();<br>//NullPointerException<br><br>float fValue = byteObj.floatValue();<br>//NullPointerException<br><br>double dValue = byteObj.doubleValue();<br>//NullPointerException
+
+<h4>（４）auto-boxing conversion</h4>
+Integer obj = 10;<br><br>
+プリミティブ型からラッパークラスへの変換は明示しなくても変換できます。
+<h4>（５）auto-unboxing conversion</h4>
+int value = Integer.valueOf(10);<br><br>
+ラッパークラスからプリミティブ型への変換は明示しなくても変換できます。<br>
+ラッパークラスがnullだとNullPointerExceptionが発生するため注意が必要です。
+<h4>（６）プリミティブ型からStringへの変換</h4>
+
+ラッパークラス|プリミティブ型 to String
+---|---
+Boolean|String str = String.valueOf(flag);<br>String str = Boolean.toString(flag);<br>String str = Boolean.valueOf(flag).toString();<br><br>trueかfalseを返します。
+Character|１文字（char）の場合：<br>String str = String.valueOf(cValue);<br>String str = Character.toString(cValue);<br>String str = Character.valueOf(cValue).toString();<br><br>１文字（サロゲートペアchar[]）の場合：<br>if (char_array.length() == 2 &&<br>	Character.isSurrogatePair(char_array[0], char_array[1])) {<br><br>	String str = Character.getName(<br>		Character.toCodePoint(char_array[0], char_array[1]));<br>	//Character.getNameメソドは字種情報をStringで返します。<br>}<br><br>１文字（サロゲートペアchar[]）<br>もしくは複数文字（char[]）の場合：<br><br>String str = new String(charArray);<br>String str = CharBuffer.wrap(charArray).toString();<br>//new Stringの方がCharBuffer.wrapしてtoStringするより高速<br>
+Byte|String str = String.valueOf(bValue);<br>String str = Byte.toString(bValue);<br>String str = Boolean.valueOf(bValue).toString();
+Short|String str = String.valueOf(sValue);<br>String str = Short.toString(sValue);<br>String str = Short.valueOf(sValue).toString();<br>
+Integer|String str = String.valueOf(iValue);<br>String str = Integer.toString(iValue);<br>String str = Integer.valueOf(iValue).toString();<br><br>//二進数<br>String str = Integer.toBinaryString(iValue);<br><br>//八進数<br>String str = Integer.toOctalString(iValue);<br><br>//十六進数<br>String str = Integer.toHexString(iValue);<br><br>//N進数<br>String str = Integer.toString(iValue, N);
+Long|String str = String.valueOf(lValue);<br>String str = Long.toString(lValue);<br>String str = Long.valueOf(lValue).toString();<br><br>//二進数<br>String str = Long.toBinaryString(lValue);<br><br>//八進数<br>String str = Long.toOctalString(lValue);<br><br>//十六進数<br>String str = Long.toHexString(lValue);<br><br>//N進数<br>String str = Long.toString(lValue, N);
+Float|String str = String.valueOf(fValue);<br>String str = Float.toString(fValue);<br>String str = Float.valueOf(fValue).toString();<br><br>//十六進数<br>String str = Float.toHexString(fValue);
+Double|String str = String.valueOf(dValue);<br>String str = Double.toString(dValue);<br>String str = Double.valueOf(dValue).toString();<br><br>//十六進数<br>String str = Double.toHexString(dValue);
+
+<h4>（７）Stringからプリミティブ型への変換</h4>
+
+ラッパークラス|String to プリミティブ型
+---|---
+Boolean|boolean flag = Boolean.parseBool(str);<br>boolean flag = Boolean.parseBoolean("True")<br>boolean flag = Boolean.parseBoolean("TRUE")<br>大文字小文字を無視した「true」のみを受け付ける。<br>それ以外はすべてfalse。「true」以外はnullであってもfalseを返すので例外はない。
+Character|１文字（char）の場合：<br><br>char ch = str.charAt(0);<br><br>１文字（サロゲートペアchar[]）の場合：<br><br>char[] ch = Character.toChars(str.codePointAt(0));<br><br>複数文字（char[]）の場合：<br><br>char[] charArray = str.toCharArray();<br>char[] charArray = new char[str.length()];<br>s.getChars(0, str.length(), charArray, 0);
+Byte|byte bValue = Byte.parseByte(str)<br>//NumberFormatException<br><br>strがN進数の場合<br>byte bValue = Byte.parseByte(str, N)}<br>//NumberFormatException
+Short|short sValue = Short.parseShort(str);<br>//NumberFormatException<br><br>strがN進数の場合<br>short sValue = Short.parseShort(str, N);<br>//NumberFormatException
+Integer|int iValue = Interger.parseInt(str);<br>//NumberFormatException<br><br>strがN進数の場合<br>int iValue = Integer.parseInt(str, N);<br>//NumberFormatException
+Long|long lValue = Long.parseLong(str);<br>//NumberFormatException<br><br>strがN進数の場合<br>long lValue = Long.parseLong(str, N);<br>//NumberFormatException
+Float|float fValue = Float.parseFloat(str);<br>//NumberFormatException
+Double|double dValue = Double.parseDouble(str);<br>//NumberFormatException
+<h3>コラム：検査例外と非検査例外</h3>
+RuntimeExceptionは非検査例外と呼ばれ発生した場合は強制的にシステムが終了します。RuntimeExceptionではないExceptionは検査例外と呼ばれ、例外が発生した場合try-catch文でcatchされ、catch内で例外処理を書くことができます。Scalaで扱う検査例外はJava由来のものでありScala独自の検査例外は存在しません。Javaの検査例外についての問題点は<a href="http://qiita.com/Kokudori/items/0fe9181d8eec8d933c98" target="_blank">検査例外再考</a>をご覧下さい。
