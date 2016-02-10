@@ -1,6 +1,6 @@
 # 1.　Stringの文字コード変換
 文字コードで文字化けが起こる場合はIOで設定を直すのが一般的でStringはUTF-16BEとして復号された状態ですので、Stringから文字コードを変換するというのはあまり一般的な話ではないですが説明します。
-<h3>1.1　Charsetの正式名称（Canonical Name）とエイリアス</h3>
+<h3>1.1　Charsetの正式名称とエイリアス</h3>
 <img src="../image/string_course.002.jpeg" width="500px"><br>
 文字コードを扱う<a href="https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html" target="_blank">Charset</a>クラスには文字コードを代表する正式名称（Canonical Name）とその異表記であるエイリアスが存在します。例えば、正式名称「windows-31j」に対するエイリアスは「MS932」など、正式名称「Shift_JIS」に対するエイリアスは「shift-jis」や「sjis」などです。  
 <img src="../image/string_course.003.jpeg" width="500px"><br>
