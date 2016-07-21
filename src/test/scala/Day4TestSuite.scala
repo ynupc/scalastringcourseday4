@@ -22,7 +22,7 @@ class Day4TestSuite extends AssertionsForJUnit {
 
     val utf8: Charset = StandardCharsets.UTF_8
 
-    assert(ms932.name() == "windows-31j")
+    assert(ms932.name == "windows-31j")
 
     println("Available Charsets")
     val availableCharsets: util.SortedMap[String, Charset] = Charset.availableCharsets
@@ -67,7 +67,7 @@ class Day4TestSuite extends AssertionsForJUnit {
   def testCodec(): Unit = {
     val source: BufferedSource = getSourcefromURL("http://awabi.2ch.net/test/read.cgi/gogaku/1298542858/", "SJIS")
     //println(source.codec)
-    for (line <- source.getLines()) {
+    for (line <- source.getLines) {
       //println(line)
     }
   }
