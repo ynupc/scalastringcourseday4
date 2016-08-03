@@ -78,6 +78,7 @@ Windowsのコマンドプロンプトの文字コードをUTF-8にしたいと�
 1990年にJIS X 0208-1983を改正したJIS X 0208-1990を制定<br>
 1993年にWindows 3.1日本語版発売、windows-31jを制定<br>
 1997年にJIS X 0208-1990を改正したJIS X 0208-1997を制定<br>
+windows-31jがJIS X 0208-1997に対応<br>
 <table>
 <thead>
 <caption>重複文字が含まれる領域</caption>
@@ -141,6 +142,7 @@ Windowsのコマンドプロンプトの文字コードをUTF-8にしたいと�
 </tbody>
 </table>
 以上の経緯により、Shift-JISもIBMやNECなどによるOEM拡張コードページのCP932もwindows-31jも全てMS-DOS上ではCP932ではあるわけですが、Javaでは、Shift-JISはShift-JIS、windows-31jのことをMS932、IBM拡張のCP932をCP932としています。<br>
+<br>
 IAEAにはWindows-31Jが登録されていますが、Microsoftの標準ウェブブラウザInternet ExploreがWindows-31Jというcharsetを認識できないバグがあったため、Windows-31JであってもHTMLなどのcharsetはShift-JISとする悪慣習が存在します。そのため、HTMLなどのウェブ文書のcharsetがShift-JISと表記されていてもWindows-31Jで読み込む必要が生まれました。
 ***
 <h3>コラム：<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/MalformedInputException.html" target="_blank">MalformedInputException</a>と<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/UnmappableCharacterException.html" target="_blank">UnmappableCharacterException</a>の回避方法</h3>
