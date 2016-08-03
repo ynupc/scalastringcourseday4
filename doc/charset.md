@@ -70,7 +70,7 @@ MalformedInputExceptionとUnmappableCharacterExceptionの回避方法につい�
 Windowsのコマンドプロンプトの文字コードをUTF-8にしたいときは```chcp 65001```、デフォルトのwindows-31jに戻したいときは```chcp 932```で変更できます。実は、文字コードMS932の932はこのコマンドで打つ番号が由来で、Shift-JISがCP932でその拡張としてwindows-31jというCP932が生まれ、それをJavaがMS932と命名しました。 ```chcp```は"change code page"の略です。他のコードページの番号が知りたい場合は、<a href="https://msdn.microsoft.com/en-us/library/ee719641.aspx" target="_blank">Supported Codepage in Windows</a>をご参照ください。
 ***
 <h3>コラム：windows-31jとは</h3>
-1978年に制定されたJIS C 6226を、1982年にシフトさせたShift-JISが開発され、MicrosoftがMS-DOSの日本語文字コードとして採用し、コードページ932に収めた。MicrosoftはOEM（相手先ブランド製造）をNEC、IBM、富士通などと結び、NECのPC-9800シリーズ、IBMのPS/55 シリーズ、富士通のFMRシリーズなどはMS-DOSを搭載し、それぞれがコードページ932に対して独自のベンダー拡張を行いました。このOEMにより生まれたコードページをOEM拡張コードページと呼びます。1993年にMicrosoftがWindows 3.1の日本語版を発売するために、IBMとNEC２社のOEM拡張コードページの差分を吸収して互換性を維持しつつ統一したCP932を開発し、それにあたってOEMメーカがCP932の仕様を変更できないようにしました。この統一されたコードページ932をIANA（Internet Assigned Numbers Authority）に「Windows 3.1 Japanese」を意味する「Windows-31J」として登録しました（<a href="http://www.iana.org/assignments/charset-reg/windows-31J" target="_blank">IANAのwindows-31jの登録</a>）。具体的には、JIS C 6226から1983年と1990年の２度に渡り改正されたJIS X 0208-1990の8,836文字（＝94区×94点）に、NEC特殊文字83文字、NEC選定IBM拡張文字374文字、IBM拡張文字388文字を追加されたものがwindows-31jです。IBMとNECとの互換性を維持するため文字が重複して登録されてしまいました。JIS X 0208-1990の中の1983年の追加分の中の10字、NEC特殊文字の中の22字、NEC選定IBM拡張文字とIBM拡張文字の全ての文字が重複しています。他の文字コードからwindows-31jに変換する場合の文字の優先順位は、JIS X 0208-1990、NEC特殊文字、IBM拡張文字、NEC選定IBM拡張文字とすることになっており、これに従い変換された場合はNEC選定IBM拡張文字は使用されません。windows-31jとUnicodeの変換表は<a href="http://unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP932.TXT" target="_blank">"cp932 to Unicode table"</a>と<a href="ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/readme.txt" target="_blank">WindowsBestFit ( ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/readme.txt )</a>の<a href="ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/bestfit932.txt" target="_blank">bestfit932.txt ( ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/bestfit932.txt )</a>をご参照ください。1997年にJIS X 0208-1990を改正したJIS X 0208-1997が制定され、windows-31jもこれに対応しました。<br>
+1978年に制定されたJIS C 6226を、1982年にシフトさせたShift-JISが開発され、MicrosoftがMS-DOSの日本語文字コードとして採用し、コードページ932に収めた。MicrosoftはOEM（相手先ブランド製造）をNEC、IBM、富士通などと結び、NECのPC-9800シリーズ、IBMのPS/55 シリーズ、富士通のFMRシリーズなどはMS-DOSを搭載し、それぞれがコードページ932に対して独自のベンダー拡張を行いました。このOEMにより生まれたコードページをOEM拡張コードページと呼びます。1993年にMicrosoftがWindows 3.1の日本語版を発売するために、IBMとNEC２社のOEM拡張コードページの差分を吸収して互換性を維持しつつ統一したCP932を開発し、それにあたってOEMメーカがCP932の仕様を変更できないようにしました。この統一されたコードページ932をIANA（Internet Assigned Numbers Authority）に「Windows 3.1 Japanese」を意味する「Windows-31J」として登録しました（<a href="http://www.iana.org/assignments/charset-reg/windows-31J" target="_blank">IANAのwindows-31jの登録</a>）。具体的には、JIS C 6226から1983年と1990年の２度に渡り改正されたJIS X 0208-1990の8,836文字（＝94区×94点）に、NEC特殊文字83文字、NEC選定IBM拡張文字374文字、IBM拡張文字388文字を追加されたものがwindows-31jです。IBMとNECとの互換性を維持するため文字が重複して登録されてしまいました。JIS X 0208-1990の中の1983年の追加分の中の10字、NEC特殊文字の中の22字、NEC選定IBM拡張文字とIBM拡張文字の全ての文字が重複しています。他の文字コードからwindows-31jに変換する場合の文字の優先順位は、JIS X 0208-1990、NEC特殊文字、IBM拡張文字、NEC選定IBM拡張文字とすることになっており、これに従い変換された場合はNEC選定IBM拡張文字は使用されません。windows-31jとUnicodeの変換表は<a href="http://unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP932.TXT" target="_blank">"cp932 to Unicode table"</a>と<a href="ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/readme.txt" target="_blank">WindowsBestFit ( ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/readme.txt )</a>の<a href="ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/bestfit932.txt" target="_blank">bestfit932.txt ( ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/bestfit932.txt )</a>をご参照ください。1997年にJIS X 0208-1990を改正したJIS X 0208-1997が制定され、windows-31jもこれに対応しました。JIS X 0208-1997附属書1「シフト符号化表現」でShift_JISが規定されています。2000年にJIS X 0213:2000のShift-JISと同様にシフトさせたShift_JISX0213を制定しました。2004年に発行されたJIS X 0213:2000/AMENDMENT 1:2004でShift_JISX0213を改正したShift_JIS-2004が制定されました。<br>
 <br>
 1978年にJIS C 6226を制定<br>
 1982年にJIS C 6226をシフトさせたShift-JISを制定<br>
@@ -78,7 +78,7 @@ Windowsのコマンドプロンプトの文字コードをUTF-8にしたいと�
 1990年にJIS X 0208-1983を改正したJIS X 0208-1990を制定<br>
 JIS X 0208-1990を基にNEC特殊文字、IBM拡張文字、NEC選定IBM拡張文字を追加したwindows-31jを制定<br>
 1993年にWindows 3.1日本語版を発売<br>
-1997年にJIS X 0208-1990を改正したJIS X 0208-1997を制定<br>
+1997年にJIS X 0208-1990を改正したJIS X 0208-1997を制定、Shift_JISを附属書1「シフト符号化表現」で規定<br>
 windows-31jがJIS X 0208-1997に対応<br>
 <table>
 <thead>
@@ -142,7 +142,7 @@ windows-31jがJIS X 0208-1997に対応<br>
 </tr>
 </tbody>
 </table>
-以上の経緯により、Shift-JISもIBMやNECなどによるOEM拡張コードページのCP932もwindows-31jも全てMS-DOS上ではCP932ではあるわけですが、Javaでは、Shift-JISはShift-JIS、windows-31jのことをMS932、IBM拡張のCP932をCP932としています。<br>
+以上の経緯により、Shift-JISもIBMやNECなどによるOEM拡張コードページのCP932もwindows-31jも全てMS-DOS上ではCP932ではあるわけですが、Javaでは、附属書1「シフト符号化表現」で規定されたShift-JISはShift-JIS、windows-31jのことをMS932、IBM拡張のCP932をCP932、Shift_JISX0213は、x-SJIS_0213としています。<br>
 <br>
 IAEAにはWindows-31Jが登録されていますが、Microsoftの標準ウェブブラウザInternet ExploreがWindows-31Jというcharsetを認識できないバグがあったため、Windows-31JであってもHTMLなどのcharsetはShift-JISとする悪慣習が存在します。そのため、HTMLなどのウェブ文書のcharsetがShift-JISと表記されていてもWindows-31Jで読み込む必要が生まれました。
 ***
