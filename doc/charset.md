@@ -144,7 +144,7 @@ windows-31jがJIS X 0208-1997に対応<br>
 </tr>
 </tbody>
 </table>
-以上の経緯により、Shift-JISもIBMやNECなどによるOEM拡張コードページのCP932もwindows-31jも全てMS-DOS上ではCP932ではあるわけですが、Javaでは、附属書1「シフト符号化表現」で規定されたShift-JISはShift-JIS、windows-31jのことをMS932、IBM拡張のCP932をCP932、Shift_JISX0213は、x-SJIS_0213としています。<br>
+以上の経緯により、Shift-JISもIBMやNECなどによるOEM拡張コードページのCP932もwindows-31jも全てMS-DOS上ではCP932ではあるわけですが、Javaでは、附属書1「シフト符号化表現」で規定されたShift-JISはShift-JIS、windows-31jのことをMS932、IBM拡張のCP932をCP932、Shift_JISX0213はx-SJIS_0213としています。<br>
 <br>
 IAEAにはWindows-31Jが登録されていますが、Microsoftの標準ウェブブラウザInternet ExploreがWindows-31Jというcharsetを認識できないバグがあったため、Windows-31JであってもHTMLなどのcharsetはShift-JISとする悪慣習が存在します。そのため、HTMLなどのウェブ文書のcharsetがShift-JISと表記されていてもWindows-31Jで読み込む必要が生まれました。
 ***
