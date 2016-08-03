@@ -38,30 +38,28 @@
   </question>
   <!--Day4-3-->
   <question
-      statement=""
-      feedback_for_correct_answer=""
-      feedback_for_incorrect_answer="">
+      statement="new String(str.getBytes(&quot;EUC-JP&quot;), StandardCharsets.UTF_8)の説明として正しい文を選べ。"
+      feedback_for_correct_answer="str: StringはUTF-16BE、getBytesでstrからEUC-JPのByte配列を返し、それをUTF-8と解釈してString (UTF-16BE)を生成します。"
+      feedback_for_incorrect_answer="str: StringはUTF-16BE、getBytesでstrからEUC-JPのByte配列を返し、それをUTF-8と解釈してString (UTF-16BE)を生成します。">
       type="ma">
     <choices>
-      <choice answer="true"></choice>
-      <choice feedback=""></choice>
-      <choice feedback=""></choice>
-      <choice feedback=""></choice>
+      <choice answer="true">UTF-16BEをEUC-JPで符号化しUTF-8で復号化</choice>
+      <choice feedback="str: StringはUTF-16BEです。">UTF-8をEUC-JPで符号化しUTF-8で復号化</choice>
+      <choice feedback="getBytesメソッドで符号化、Stringコンストラクタの第2引数で復号化">UTF-16BEをUTF-8で符号化しEUC-JPで復号化</choice>
+      <choice feedback="str: StringはUTF-16BE、getBytesメソッドで符号化、Stringコンストラクタの第2引数で復号化">UTF-8をEUC-JPで復号化</choice>
     </choices>
   </question>
   <!--Day4-4-->
   <question
-      statement=""
+      statement="new String(str.getBytes(), &quot;MS932&quot;)の説明として正しい文を選べ。"
       feedback_for_correct_answer=""
       feedback_for_incorrect_answer="">
       type="ma">
     <choices>
-      <choice answer="true"></choice>
-      <choice feedback=""></choice>
-      <choice feedback=""></choice>
-      <choice feedback=""></choice>
-      <choice feedback=""></choice>
-      <choice feedback=""></choice>
+      <choice answer="true">UTF-16BEをwindows-31jで復号化</choice>
+      <choice feedback="">UTF-8をwindows-31jで復号化</choice>
+      <choice feedback="">UTF-16BEをwindows-31jで符号化</choice>
+      <choice feedback="">UTF-8をwindows-31jで符号化</choice>
     </choices>
   </question>
   <!--Day4-5-->
