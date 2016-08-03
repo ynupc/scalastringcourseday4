@@ -18,7 +18,7 @@
       type="ma">
     <choices>
       <choice answer="true">windows-31j</choice>
-      <choice feedback="CP932は、Shift-JISからMS932に至るまでの変遷で登場した種々の文字コードを意味するエイリアスであり多義的ですが、最近はMS932と同じ文字コードのエイリアスとして使用されることが多いです。">CP932</choice>
+      <choice feedback="CP932は、Shift-JISからMS932に至るまでの変遷で登場した種々の文字コードを意味するエイリアスであり多義的ですが、最近はMS932と同じ文字コードのエイリアスとして使用されることが多いです。ただし、JavaではIBM CP932を指しwindows-31jではないです。">CP932</choice>
       <choice feedback="Shift-JISは、MS932の下位互換に相当する文字コードです。">Shift-JIS</choice>
       <choice feedback="UTF-8とMS932は別の文字コードです。両者とも多様な文字を表現したい場合に使用されます。">UTF-8</choice>
     </choices>
