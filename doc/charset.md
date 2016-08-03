@@ -76,7 +76,8 @@ Windowsのコマンドプロンプトの文字コードをUTF-8にしたいと�
 1982年にJIS C 6226をシフトさせたShift-JISを制定<br>
 1983年にJIS C 6226を改正したJIS X 0208-1983を制定<br>
 1990年にJIS X 0208-1983を改正したJIS X 0208-1990を制定<br>
-1993年にWindows 3.1日本語版発売、windows-31jを制定<br>
+windows-31jを制定<br>
+1993年にWindows 3.1日本語版発売<br>
 1997年にJIS X 0208-1990を改正したJIS X 0208-1997を制定<br>
 windows-31jがJIS X 0208-1997に対応<br>
 <table>
