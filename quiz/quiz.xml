@@ -26,8 +26,8 @@
   <!--Day4-2-->
   <question
       statement="UTF-8のCharsetを選べ。"
-      feedback_for_correct_answer=""
-      feedback_for_incorrect_answer="">
+      feedback_for_correct_answer="StandardChasets.UTF_8かChaset.forName(&quot;UTF-8&quot;)でUTF-8のCharsetが得られます。"
+      feedback_for_incorrect_answer="StandardChasetsクラスかChaset.forNameメソッドでChasetが得られます。">
       type="ma">
     <choices>
       <choice answer="true">StandardCharsets.UTF_8</choice>
