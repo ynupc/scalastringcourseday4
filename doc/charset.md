@@ -71,6 +71,12 @@ Windowsのコマンドプロンプトの文字コードをUTF-8にしたいと�
 ***
 <h3>コラム：windows-31jとは</h3>
 1978年に制定されたJIS C 6226を、1982年にシフトさせたShift-JISが開発され、MicrosoftがMS-DOSの日本語文字コードとして採用し、コードページ932に収めた。MicrosoftはOEM（相手先ブランド製造）をNEC、IBM、富士通などと結び、NECのPC-9800シリーズ、IBMのPS/55 シリーズ、富士通のFMRシリーズなどはMS-DOSを搭載し、それぞれがコードページ932に対して独自のベンダー拡張を行いました。このOEMにより生まれたコードページをOEM拡張コードページと呼びます。1993年にMicrosoftがWindows 3.1の日本語版を発売するために、IBMとNEC２社のOEM拡張コードページの差分を吸収して互換性を維持しつつ統一したCP932を開発し、それにあたってOEMメーカがCP932の仕様を変更できないようにしました。この統一されたコードページ932をIANA（Internet Assigned Numbers Authority）に「Windows 3.1 Japanese」を意味する「Windows-31J」として登録しました。具体的には、JIS C 6226から1983年と1990年の２度に渡り改正されたJIS X 0208-1990の8,836文字（＝94区×94点）に、NEC特殊文字83文字、NEC選定IBM拡張文字374文字、IBM拡張文字388文字を追加されたものがwindows-31jです。IBMとNECとの互換性を維持するため文字が重複して登録されてしまいました。JIS X 0208-1990の中の1983年の追加分の中の10字、NEC特殊文字の中の22字、NEC選定IBM拡張文字とIBM拡張文字の全ての文字が重複しています。他の文字コードからwindows-31jに変換する場合の文字の優先順位は、JIS X 0208-1990、NEC特殊文字、IBM拡張文字、NEC選定IBM拡張文字とすることになっており、これに従い変換された場合はNEC選定IBM拡張文字は使用されません。windows-31jとUnicodeの変換表は<a href="http://unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP932.TXT" target="_blank">"cp932 to Unicode table"</a>をご参照ください。<br>
+1978年JIS C 6226を制定<br>
+1982年JIS C 6226をシフトさせたShift-JISを制定<br>
+1983年JIS C 6226を改正したJIS X 0208-1983を制定<br>
+1990年IS X 0208-1983を改正したJIS X 0208-1990を制定<br>
+1993年にWindows 3.1日本語版発売、windows-31jを制定<br>
+1997年JIS X 0208-1990を改正したJIS X 0208-1997を制定<br>
 <table>
 <thead>
 <caption>重複文字が含まれる領域</caption>
