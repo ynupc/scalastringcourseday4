@@ -25,15 +25,15 @@
   </question>
   <!--Day4-2-->
   <question
-      statement=""
+      statement="UTF-8のCharsetを選べ。"
       feedback_for_correct_answer=""
       feedback_for_incorrect_answer="">
       type="ma">
     <choices>
-      <choice answer="true"></choice>
-      <choice feedback=""></choice>
-      <choice feedback=""></choice>
-      <choice feedback=""></choice>
+      <choice answer="true">StandardCharsets.UTF_8</choice>
+      <choice feedback="StandardCharsetではなくStandardCharsetsです。">StandardCharset.UTF_8</choice>
+      <choice feedback="UTF-8ではなくwindows-31jが得られます。">Charset.forName("MS932")</choice>
+      <choice feedback="UTF-8ではなくShift-JISが得られます。">Charset.forName("sjis")</choice>
     </choices>
   </question>
   <!--Day4-3-->
