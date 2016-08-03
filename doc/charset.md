@@ -80,7 +80,7 @@ Windowsのコマンドプロンプトの文字コードをUTF-8にしたいと�
 <th>字種</th><th>区番号</th><th>コードポイント</th><th>字数</th>
 </tr>
 <tr>
-<td>JIS X 0208-1990</td><td>2</td><td>&nbsp;</td><td>10</td>
+<td>JIS X 0208-1990</td><td>2</td><td>表「JIS X 0208-1990の2区にある重複文字の一覧」</td><td>10</td>
 </tr>
 <tr>
 <td>NEC特殊文字</td><td>13</td><td>0x8740 - 0x879C</td><td>22</td>
