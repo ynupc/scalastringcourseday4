@@ -11,3 +11,4 @@
 <a href="https://github.com/ynupc/scalastringcourseday4" target="_blank">https://github.com/ynupc/scalastringcourseday4</a>
 <h2>クイズ</h2>
 <a href="http://ynupc.github.io/course/scalastringcourse/day4/" target="_blank">http://ynupc.github.io/course/scalastringcourse/day4/</a>  
+<h2>アンケート</h2>
