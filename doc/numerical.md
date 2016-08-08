@@ -496,6 +496,15 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
 
 </table>
 
+```scala
+  @Test
+  def testPimpMyLibrary(): Unit = {
+    assert(0x20BB7.toHexString == "20bb7")
+    assert(0x20BB7.toHexString.toUpperCase == "20BB7")
+    assert("20BB7".hexStringToInt == 0x20BB7)
+  }
+```
+
 ***
 <h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
 Javaでの数値型を含むプリミティブ型とStringとの相互変換を説明しますが、それを説明する前にプリミティブ型同士の相互変換やプリミティブ型とプリミティブラッパークラスとの相互変換についても説明します。Scalaでのみプログラミングをする人は読み飛ばしてください。
