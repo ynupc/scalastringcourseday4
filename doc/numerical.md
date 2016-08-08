@@ -497,6 +497,8 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
 </table>
 
 ```scala
+import _root_.util.StringUtils._
+
   @Test
   def testPimpMyLibrary(): Unit = {
     assert(0x20BB7.toHexString == "20bb7")
