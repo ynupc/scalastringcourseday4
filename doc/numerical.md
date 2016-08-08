@@ -390,7 +390,7 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
   }
 ```
 ***
-<h3>2.4　既存クラスにメソッドを足したように見せるPimp my Libraryパターン</h3>
+<h3>2.4　既存クラスに変換メソッドを足したように見せる方法（Pimp my Libraryパターン）（自作）</h3>
 <ul>
 <li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/IntUtils.scala">IntUtils</a></li>
 <li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/LongUtils.scala">LongUtils</a></li>
