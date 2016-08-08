@@ -441,19 +441,19 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
 <td>binaryStringToByte</td><td>Binary String</td><td>Byte</td>
 </tr>
 <tr>
-<td>binaryStringToShort</td><td>Bintary String</td><td>Short</td>
+<td>binaryStringToShort</td><td>Binary String</td><td>Short</td>
 </tr>
 <tr>
-<td>binaryStringToInt</td><td>Bintary String</td><td>Int</td>
+<td>binaryStringToInt</td><td>Binary String</td><td>Int</td>
 </tr>
 <tr>
-<td>binaryStringToUnsignedInt</td><td>Bintary String</td><td>Int</td>
+<td>binaryStringToUnsignedInt</td><td>Binary String</td><td>Int</td>
 </tr>
 <tr>
-<td>binaryStringToLong</td><td>Bintary String</td><td>Long</td>
+<td>binaryStringToLong</td><td>Binary String</td><td>Long</td>
 </tr>
 <tr>
-<td>binaryStringToUnsignedLong</td><td>Bintary String</td><td>Long</td>
+<td>binaryStringToUnsignedLong</td><td>Binary String</td><td>Long</td>
 </tr>
 
 <tr>
