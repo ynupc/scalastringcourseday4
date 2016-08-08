@@ -391,6 +391,110 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
 ```
 ***
 <h3>2.4　既存クラスにメソッドを足したように見せるPimp my Libraryパターン</h3>
+<ul>
+<li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/IntUtils.scala">IntUtils</a></li>
+<li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/LongUtils.scala">LongUtils</a></li>
+<li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/FloatUtils.scala">FloatUtils</a></li>
+<li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/DoubleUtils.scala">DoubleUtils</a></li>
+</ul>
+<table>
+<tr>
+<th>クラス</th><th>どのクラスにメソッドを追加するか</th><th>追加するメソッド</th>
+</tr>
+<tr>
+<td rowspan="3">IntUtils</td><td rowspan="3">Int</td><td>toHexString</td>
+</tr>
+<tr>
+<td>toOctalString</td>
+</tr>
+<tr>
+<td>toBinaryString</td>
+</tr>
+
+<tr>
+<td rowspan="3">LongUtils</td><td rowspan="3">Long</td><td>toHexString</td>
+</tr>
+<tr>
+<td>toOctalString</td>
+</tr>
+<tr>
+<td>toBinaryString</td>
+</tr>
+
+<tr>
+<td>FloatUtils</td><td>Float</td><td>toHexString</td>
+</tr>
+
+<tr>
+<td>DoubleUtils</td><td>Double</td><td>toHexString</td>
+</tr>
+
+</table>
+
+<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/StringUtils.scala">StringUtils</a>
+<table>
+<tr>
+<th>Stringクラスに追加するメソッド</th><th>数値の表記形式</th><th>どのクラスに変換するか</th>
+</tr>
+
+<tr>
+<td>binaryStringToByte</td><td>Binary String</td><td>Byte</td>
+</tr>
+<tr>
+<td>binaryStringToShort</td><td>Bintary String</td><td>Short</td>
+</tr>
+<tr>
+<td>binaryStringToInt</td><td>Bintary String</td><td>Int</td>
+</tr>
+<tr>
+<td>binaryStringToUnsignedInt</td><td>Bintary String</td><td>Int</td>
+</tr>
+<tr>
+<td>binaryStringToLong</td><td>Bintary String</td><td>Long</td>
+</tr>
+<tr>
+<td>binaryStringToUnsignedLong</td><td>Bintary String</td><td>Long</td>
+</tr>
+
+<tr>
+<td>octalStringToByte</td><td>Octal String</td><td>Byte</td>
+</tr>
+<tr>
+<td>octalStringToShort</td><td>Octal String</td><td>Short</td>
+</tr>
+<tr>
+<td>octalStringToInt</td><td>Octal String</td><td>Int</td>
+</tr>
+<tr>
+<td>octalStringToUnsignedInt</td><td>Octal String</td><td>Int</td>
+</tr>
+<tr>
+<td>octalStringToLong</td><td>Octal String</td><td>Long</td>
+</tr>
+<tr>
+<td>octalStringToUnsignedLong</td><td>Octal String</td><td>Long</td>
+</tr>
+
+<tr>
+<td>hexStringToByte</td><td>Hex String</td><td>Byte</td>
+</tr>
+<tr>
+<td>hexStringToShort</td><td>Hex String</td><td>Short</td>
+</tr>
+<tr>
+<td>hexStringToInt</td><td>Hex String</td><td>Int</td>
+</tr>
+<tr>
+<td>hexStringToUnsignedInt</td><td>Hex String</td><td>Int</td>
+</tr>
+<tr>
+<td>hexStringToLong</td><td>Hex String</td><td>Long</td>
+</tr>
+<tr>
+<td>hexStringToUnsignedLong</td><td>Hex String</td><td>Long</td>
+</tr>
+
+</table>
 
 ***
 <h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
