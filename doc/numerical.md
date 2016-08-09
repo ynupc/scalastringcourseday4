@@ -393,7 +393,7 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
 <h3>2.4　既存クラスに変換メソッドを足したように見せる方法（Pimp my Libraryパターン）（自作）</h3>
 java.lang.Integer.toHexStringメソッドやjava.lang.Integer.parseIntメソッドを使用して、16進数表記のStringクラスとIntクラスとを相互変換できますが、
 もし、Intクラス、Longクラスなどの数値型のクラスやStringクラスに対して、メソッドを足すことができれば、IntクラスからtoStringメソッドでStringクラスに変換したり、StringクラスからtoIntメソッドでIntクラスに変換したりするような形で、16進数表記のStringクラスとIntクラスとを相互変換できるようになります。例えば、IntクラスにtoHexStringメソッドを足したり、StringクラスにhexStringToIntメソッドを足したりできます。そのような変換メソッドがあった方が直感的ですし、そのようにしたい場合は、StringクラスやIntクラスのような既存のクラスにメソッドを足すことはできないですが、足したように見せかける方法Pimp my Libraryパターンがあります。
-implicitメソッドで既存クラスを自分が定義した新しいクラスに暗黙のうちに変換して、新しいクラスに欲しいメソッドを定義しておくと見かけ上は既存に欲しいメソッドを足したようになります。実装例とサンプルコードは次です。
+implicitメソッドで既存クラスを自分が定義した新しいクラスに暗黙のうちに変換して、新しいクラスに欲しいメソッドを定義しておくと見かけ上は既存に欲しいメソッドを足したようになります。Pimp my Libraryパターンを実装したクラスとそれを使って変換についてのサンプルコードは次です。
 <ul>
 <li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/IntUtils.scala">IntUtils</a></li>
 <li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/LongUtils.scala">LongUtils</a></li>
