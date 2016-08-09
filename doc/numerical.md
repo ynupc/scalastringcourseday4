@@ -347,6 +347,37 @@ java.lang.Integer、java.lang.Longは任意のN進数表記のStringに変換す
     assert(java.lang.Short.parseShort("22", 4) == (10: Short))
     assert(java.lang.Integer.parseInt("22", 4) == 10)
     assert(java.lang.Long.parseLong("22", 4)   == 10L)
+    assert(java.lang.Integer.parseUnsignedInt("22", 4) == 10)
+    assert(java.lang.Long.parseUnsignedLong("22", 4)   == 10L)
+
+    assert(java.lang.Byte.parseByte("+22", 4)   == (10: Byte))
+    assert(java.lang.Short.parseShort("+22", 4) == (10: Short))
+    assert(java.lang.Integer.parseInt("+22", 4) == 10)
+    assert(java.lang.Long.parseLong("+22", 4)   == 10L)
+    assert(java.lang.Integer.parseUnsignedInt("+22", 4) == 10)
+    assert(java.lang.Long.parseUnsignedLong("+22", 4)   == 10L)
+
+    //4進数の-22は10進数で10
+    assert(java.lang.Byte.parseByte("-22", 4)   == (-10: Byte))
+    assert(java.lang.Short.parseShort("-22", 4) == (-10: Short))
+    assert(java.lang.Integer.parseInt("-22", 4) == -10)
+    assert(java.lang.Long.parseLong("-22", 4)   == -10L)
+
+    //java.lang.NumberFormatException: Illegal leading minus sign on unsigned string -22.
+    //assert(java.lang.Integer.parseUnsignedInt("-22", 4) == 10)
+    //assert(java.lang.Long.parseUnsignedLong("-22", 4)   == 10L)
+
+    assert(java.lang.Integer.MAX_VALUE == 2147483647)
+    assert(java.lang.Long.MAX_VALUE == 9223372036854775807L)
+
+    //java.lang.NumberFormatException: For input string: "2147483648"
+    //assert(java.lang.Integer.parseInt("2147483648") == -2147483648)
+
+    //java.lang.NumberFormatException: For input string: "9223372036854775808"
+    //assert(java.lang.Long.parseLong("9223372036854775808") == -9223372036854775808L)
+
+    assert(java.lang.Integer.parseUnsignedInt("2147483648") == -2147483648)
+    assert(java.lang.Long.parseUnsignedLong("9223372036854775808") == -9223372036854775808L)
   }
 ```
 <h4>2.3.3　文字とN進数表記での数値の相互変換</h4>
