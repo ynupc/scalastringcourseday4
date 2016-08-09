@@ -500,10 +500,10 @@ implicitメソッドで既存クラスを自分が定義した新しいクラス
 </table>
 
 ```scala
-import _root_.util.StringUtils._
-
   @Test
   def testPimpMyLibrary(): Unit = {
+    import _root_.util.StringUtils._
+
     assert(0x20BB7.toHexString == "20bb7")
     assert(0x20BB7.toHexString.toUpperCase == "20BB7")
     assert("20BB7".hexStringToInt == 0x20BB7)
