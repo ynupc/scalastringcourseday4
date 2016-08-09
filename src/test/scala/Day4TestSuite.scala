@@ -440,6 +440,37 @@ class Day4TestSuite extends AssertionsForJUnit {
     assert(java.lang.Short.parseShort("22", 4) == (10: Short))
     assert(java.lang.Integer.parseInt("22", 4) == 10)
     assert(java.lang.Long.parseLong("22", 4)   == 10L)
+    assert(java.lang.Integer.parseUnsignedInt("22", 4) == 10)
+    assert(java.lang.Long.parseUnsignedLong("22", 4)   == 10L)
+
+    assert(java.lang.Byte.parseByte("+22", 4)   == (10: Byte))
+    assert(java.lang.Short.parseShort("+22", 4) == (10: Short))
+    assert(java.lang.Integer.parseInt("+22", 4) == 10)
+    assert(java.lang.Long.parseLong("+22", 4)   == 10L)
+    assert(java.lang.Integer.parseUnsignedInt("+22", 4) == 10)
+    assert(java.lang.Long.parseUnsignedLong("+22", 4)   == 10L)
+
+    //4進数の-22は10進数で10
+    assert(java.lang.Byte.parseByte("-22", 4)   == (-10: Byte))
+    assert(java.lang.Short.parseShort("-22", 4) == (-10: Short))
+    assert(java.lang.Integer.parseInt("-22", 4) == -10)
+    assert(java.lang.Long.parseLong("-22", 4)   == -10L)
+
+    //java.lang.NumberFormatException: Illegal leading minus sign on unsigned string -22.
+    //assert(java.lang.Integer.parseUnsignedInt("-22", 4) == 10)
+    //assert(java.lang.Long.parseUnsignedLong("-22", 4)   == 10L)
+
+    assert(java.lang.Integer.MAX_VALUE == 2147483647)
+    assert(java.lang.Long.MAX_VALUE == 9223372036854775807L)
+
+    //java.lang.NumberFormatException: For input string: "2147483648"
+    //assert(java.lang.Integer.parseInt("2147483648") == -2147483648)
+
+    //java.lang.NumberFormatException: For input string: "9223372036854775808"
+    //assert(java.lang.Long.parseLong("9223372036854775808") == -9223372036854775808L)
+
+    assert(java.lang.Integer.parseUnsignedInt("2147483648") == -2147483648)
+    assert(java.lang.Long.parseUnsignedLong("9223372036854775808") == -9223372036854775808L)
   }
 
   @Test
@@ -474,5 +505,14 @@ class Day4TestSuite extends AssertionsForJUnit {
     //N進数において'G'は16を意味する
     assert(Character.getNumericValue(numeric)   == 16)
     assert(Character.getNumericValue(codePoint) == 16)
+  }
+
+  @Test
+  def testPimpMyLibrary(): Unit = {
+    import _root_.util.StringUtils._
+
+    assert(0x20BB7.toHexString == "20bb7")
+    assert(0x20BB7.toHexString.toUpperCase == "20BB7")
+    assert("20BB7".hexStringToInt == 0x20BB7)
   }
 }
