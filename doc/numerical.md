@@ -4,7 +4,7 @@
 JavaでStringと数値型の変換を学ぶには、数値型が参照型ではなく特殊なプリミティブ型であるために学ぶべきことが多くあります。<br>  
 JavaでのStringとプリミティブ型との相互変換については<a href="#コラムjavaでのstringとプリミティブ型の相互変換">コラム：JavaでのStringとプリミティブ型の相互変換</a>を参照ください。  
 <img src="../image/string_course.006.jpeg" width="500px"><br>
-一方でScalaは数値型も参照型であるために簡単に変換が可能です。ただし、<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/RuntimeException.html" target="_blank">RuntimeException</a>の一種である<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/NumberFormatException.html" target="_blank">NumberFormatException</a>（Booleanの場合のみ数値型ではないため<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/IllegalArgumentException.html" target="_blank">IllegalArgumentException</a>）に注意が必要です。
+一方でScalaは数値型も参照型であるために簡単に変換が可能です。ただし、非検査例外<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/RuntimeException.html" target="_blank">RuntimeException</a>の一種である<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/NumberFormatException.html" target="_blank">NumberFormatException</a>（Booleanの場合のみ数値型ではないため<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/IllegalArgumentException.html" target="_blank">IllegalArgumentException</a>）に注意が必要です。
 ```scala
   @Test
   def testConversionsBetweenStringAndNum(): Unit = {
@@ -39,6 +39,7 @@ JavaでのStringとプリミティブ型との相互変換については<a href
     //java.lang.NumberFormatException
   }
 ```
+Javaでは検査例外と非検査例外が存在しますが、Scalaでは非検査例外のみで検査例外は存在しません。
 検査例外と非検査例外については<a href="#コラム検査例外と非検査例外">コラム：検査例外と非検査例外</a>を参照ください。
 ***
 <h3>2.1　JavaのBooleanラッパークラスのparseBooleanメソッドによる文字列からのBooleanへの変換</h3>
