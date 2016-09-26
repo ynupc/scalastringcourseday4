@@ -54,33 +54,33 @@ Charsetクラスでよく使われるメソッドをスライドに一覧にし�
 ***
 <h3>1.2　文字コードの変換</h3>
 <img src="/image/string_course.004.jpeg" width="500px"><br>
-スライドやサンプルコードは（１）UTF-16BEとしてStringが持っている文字列をEUC-JPのByte配列に変換してそれをUTF-8と解釈してUTF-16BEに変換することで文字化けが直りそうな場合や（２）UTF-16BEとしてStringが持っている文字列をByte配列に変換してそれをwindows-31jと解釈してUTF-16BEに変換することで文字化けが直りそうな場合に使えるかもしれません。特に（２）はWindowsのコマンドプロンプトのデフォルトの文字コードがwindows-31jなのでWindows上でProcessを投げるときの文字化け回避に使えます。
+スライドやサンプルコードは（１）UTF-16BEとしてStringが持っている文字列をEUC-JPのByte配列に変換してそれをUTF-8と解釈してUTF-16BEに変換することで文字化けが直りそうな場合や（２）UTF-16BEとしてStringが持っている文字列をByte配列に変換してそれをWindows-31Jと解釈してUTF-16BEに変換することで文字化けが直りそうな場合に使えるかもしれません。特に（２）はWindowsのコマンドプロンプトのデフォルトの文字コードがWindows-31JなのでWindows上でProcessを投げるときの文字化け回避に使えます。
 ```scala
   @Test
   def testEncodingConverter(): Unit = {
-    val str = ""
-    val eucJpToUtf8 = new String(str.getBytes("EUC-JP"), StandardCharsets.UTF_8)
-    val toMs932 = new String(str.getBytes, "MS932")
+    val str: String = ""
+    val eucJpToUtf8: String = new String(str.getBytes("EUC-JP"), StandardCharsets.UTF_8)
+    val toMs932: String = new String(str.getBytes, "MS932")
   }
 ```
 Windowsのコマンドプロンプトの文字コード変更については<a href="#コラムwindowsのコマンドプロンプトの文字コード変更">コラム：Windowsのコマンドプロンプトの文字コード変更</a>、文字コードwindows-31j（MS932）については<a href="#コラムwindows-31jとは">コラム：windows-31jとは</a>、
 MalformedInputExceptionとUnmappableCharacterExceptionの回避方法については<a href="#コラムmalformedinputexceptionとunmappablecharacterexceptionの回避方法">コラム：MalformedInputExceptionとUnmappableCharacterExceptionの回避方法</a>を参照ください。
 ***
 <h3>コラム：Windowsのコマンドプロンプトの文字コード変更</h3>
-Windowsのコマンドプロンプトの文字コードをUTF-8にしたいときは```chcp 65001```、デフォルトのwindows-31jに戻したいときは```chcp 932```で変更できます。実は、文字コードMS932の932はこのコマンドで打つ番号が由来で、Shift-JISがCP932でその拡張としてwindows-31jというCP932が生まれ、それをJavaがMS932と命名しました。 ```chcp```は"change code page"の略です。他のコードページの番号が知りたい場合は、<a href="https://msdn.microsoft.com/en-us/library/ee719641.aspx" target="_blank">Supported Codepage in Windows</a>をご参照ください。
+Windowsのコマンドプロンプトの文字コードをUTF-8にしたいときは```chcp 65001```、デフォルトのWindows-31Jに戻したいときは```chcp 932```で変更できます。実は、文字コードMS932の932はこのコマンドで打つ番号が由来で、Shift-JISがCP932でその拡張としてWindows-31JというCP932が生まれ、それをJavaがMS932と命名しました。 ```chcp```は"change code page"の略です。他のコードページの番号が知りたい場合は、<a href="https://msdn.microsoft.com/en-us/library/ee719641.aspx" target="_blank">Supported Codepage in Windows</a>をご参照ください。
 ***
 <h3>コラム：windows-31jとは</h3>
-1978年に制定されたJIS C 6226を、1982年にシフトさせたShift-JISが開発され、MicrosoftがMS-DOSの日本語文字コードとして採用し、コードページ932に収めた。MicrosoftはOEM（相手先ブランド製造）をNEC、IBM、富士通などと結び、NECのPC-9800シリーズ、IBMのPS/55 シリーズ、富士通のFMRシリーズなどはMS-DOSを搭載し、それぞれがコードページ932に対して独自のベンダー拡張を行いました。このOEMにより生まれたコードページをOEM拡張コードページと呼びます。1993年にMicrosoftがWindows 3.1の日本語版を発売するために、IBMとNEC２社のOEM拡張コードページの差分を吸収して互換性を維持しつつ統一したCP932を開発し、それにあたってOEMメーカがCP932の仕様を変更できないようにしました。この統一されたコードページ932をIANA（Internet Assigned Numbers Authority）に「Windows 3.1 Japanese」を意味する「Windows-31J」として登録しました（<a href="http://www.iana.org/assignments/charset-reg/windows-31J" target="_blank">IANAのwindows-31jの登録</a>）。具体的には、JIS C 6226から1983年と1990年の２度に渡り改正されたJIS X 0208-1990の8,836文字（＝94区×94点）に、NEC特殊文字83文字、NEC選定IBM拡張文字374文字、IBM拡張文字388文字を追加されたものがwindows-31jです。IBMとNECとの互換性を維持するため文字が重複して登録されてしまいました。JIS X 0208-1990の中の1983年の追加分の中の10字、NEC特殊文字の中の22字、NEC選定IBM拡張文字とIBM拡張文字の全ての文字が重複しています。他の文字コードからwindows-31jに変換する場合の文字の優先順位は、JIS X 0208-1990、NEC特殊文字、IBM拡張文字、NEC選定IBM拡張文字とすることになっており、これに従い変換された場合はNEC選定IBM拡張文字は使用されません。windows-31jとUnicodeの変換表は<a href="http://unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP932.TXT" target="_blank">"cp932 to Unicode table"</a>と<a href="ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/readme.txt" target="_blank">WindowsBestFit ( ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/readme.txt )</a>の<a href="ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/bestfit932.txt" target="_blank">bestfit932.txt ( ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/bestfit932.txt )</a>をご参照ください。1997年にJIS X 0208-1990を改正したJIS X 0208-1997が制定され、windows-31jもこれに対応しました。JIS X 0208-1997の附属書1「シフト符号化表現」でShift_JISが規定されています。2000年にJIS X 0208:1997を拡張したJIS X 0213:2000を制定し、さらにJIS X 0213:2000をShift-JISと同様にシフトさせたShift_JISX0213を制定し、windows-31jをJIS X 0213:2000に対応させたx-MS932_0213を制定しました。2004年に発行されたJIS X 0213:2000/AMENDMENT 1:2004で、JIS X 0213:2000を改正したJIS X 0213:2004を制定し、Shift_JISX0213を改正したShift_JIS-2004を制定しました。<br>
+1978年に制定されたJIS C 6226を、1982年にシフトさせたShift-JISが開発され、MicrosoftがMS-DOSの日本語文字コードとして採用し、コードページ932に収めた。MicrosoftはOEM（相手先ブランド製造）をNEC、IBM、富士通などと結び、NECのPC-9800シリーズ、IBMのPS/55 シリーズ、富士通のFMRシリーズなどはMS-DOSを搭載し、それぞれがコードページ932に対して独自のベンダー拡張を行いました。このOEMにより生まれたコードページをOEM拡張コードページと呼びます。1993年にMicrosoftがWindows 3.1の日本語版を発売するために、IBMとNEC２社のOEM拡張コードページの差分を吸収して互換性を維持しつつ統一したCP932を開発し、それにあたってOEMメーカがCP932の仕様を変更できないようにしました。この統一されたコードページ932をIANA（Internet Assigned Numbers Authority）に「Windows 3.1 Japanese」を意味する「Windows-31J」として登録しました（<a href="http://www.iana.org/assignments/charset-reg/windows-31J" target="_blank">IANAのWindows-31Jの登録</a>）。具体的には、JIS C 6226から1983年と1990年の２度に渡り改正されたJIS X 0208-1990の8,836文字（＝94区×94点）に、NEC特殊文字83文字、NEC選定IBM拡張文字374文字、IBM拡張文字388文字を追加されたものがWindows-31Jです。IBMとNECとの互換性を維持するため文字が重複して登録されてしまいました。JIS X 0208-1990の中の1983年の追加分の中の10字、NEC特殊文字の中の22字、NEC選定IBM拡張文字とIBM拡張文字の全ての文字が重複しています。他の文字コードからWindows-31Jに変換する場合の文字の優先順位は、JIS X 0208-1990、NEC特殊文字、IBM拡張文字、NEC選定IBM拡張文字とすることになっており、これに従い変換された場合はNEC選定IBM拡張文字は使用されません。Windows-31JとUnicodeの変換表は<a href="http://unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP932.TXT" target="_blank">"cp932 to Unicode table"</a>と<a href="ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/readme.txt" target="_blank">WindowsBestFit ( ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/readme.txt )</a>の<a href="ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/bestfit932.txt" target="_blank">bestfit932.txt ( ftp://ftp.unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WindowsBestFit/bestfit932.txt )</a>をご参照ください。1997年にJIS X 0208-1990を改正したJIS X 0208-1997が制定され、Windows-31Jもこれに対応しました。JIS X 0208-1997の附属書1「シフト符号化表現」でShift_JISが規定されています。2000年にJIS X 0208:1997を拡張したJIS X 0213:2000を制定し、さらにJIS X 0213:2000をShift-JISと同様にシフトさせたShift_JISX0213を制定し、Windows-31JをJIS X 0213:2000に対応させたx-MS932_0213を制定しました。2004年に発行されたJIS X 0213:2000/AMENDMENT 1:2004で、JIS X 0213:2000を改正したJIS X 0213:2004を制定し、Shift_JISX0213を改正したShift_JIS-2004を制定しました。<br>
 <br>
 1978年にJIS C 6226を制定<br>
 1982年にJIS C 6226をシフトさせたShift-JISを制定<br>
 1983年にJIS C 6226を改正したJIS X 0208-1983を制定<br>
 1990年にJIS X 0208-1983を改正したJIS X 0208-1990を制定<br>
-JIS X 0208-1990を基にNEC特殊文字、IBM拡張文字、NEC選定IBM拡張文字を追加したwindows-31jを制定<br>
+JIS X 0208-1990を基にNEC特殊文字、IBM拡張文字、NEC選定IBM拡張文字を追加したWindows-31Jを制定<br>
 1993年にWindows 3.1日本語版を発売<br>
 1997年にJIS X 0208-1990を改正したJIS X 0208-1997を制定、Shift_JISをJIS X 0208-1997の附属書1「シフト符号化表現」で規定<br>
 windows-31jがJIS X 0208-1997に対応<br>
-2000年にJIS X 0208:1997を拡張したJIS X 0213:2000を制定し、さらにJIS X 0213:2000をShift-JISと同様にシフトさせたShift_JISX0213を制定、windows-31jをJIS X 0213:2000に対応させたx-MS932_0213を制定<br>
+2000年にJIS X 0208:1997を拡張したJIS X 0213:2000を制定し、さらにJIS X 0213:2000をShift-JISと同様にシフトさせたShift_JISX0213を制定、Windows-31JをJIS X 0213:2000に対応させたx-MS932_0213を制定<br>
 2004年に発行されたJIS X 0213:2000/AMENDMENT 1:2004で、JIS X 0213:2000を改正したJIS X 0213:2004を制定し、Shift_JISX0213を改正したShift_JIS-2004を制定
 <table>
 <thead>
@@ -144,12 +144,12 @@ windows-31jがJIS X 0208-1997に対応<br>
 </tr>
 </tbody>
 </table>
-以上の経緯により、Shift-JISもIBMやNECなどによるOEM拡張コードページのCP932もwindows-31jも全てMS-DOS上ではCP932ではあるわけですが、Javaでは、附属書1「シフト符号化表現」で規定されたShift-JISはShift-JIS、windows-31jのことをMS932、IBM拡張のCP932をCP932、Shift_JISX0213はx-SJIS_0213、x-MS932_0213はx-MS932_0213としています（2002年9月16日公開のJava 1.4.1以降）。<br>
+以上の経緯により、Shift-JISもIBMやNECなどによるOEM拡張コードページのCP932もwindows-31jも全てMS-DOS上ではCP932ではあるわけですが、Javaでは、附属書1「シフト符号化表現」で規定されたShift-JISはShift-JIS、Windows-31JのことをMS932、IBM拡張のCP932をCP932、Shift_JISX0213はx-SJIS_0213、x-MS932_0213はx-MS932_0213としています（2002年9月16日公開のJava 1.4.1以降）。<br>
 <br>
-IAEAにはWindows-31Jが登録されていますが、Microsoftの標準ウェブブラウザInternet ExploreがWindows-31Jというcharsetを認識できないバグがあったため、Windows-31JであってもHTMLなどのcharsetはShift-JISとする悪慣習が存在します。そのため、HTMLなどのウェブ文書のcharsetがShift-JISと表記されていてもWindows-31Jで読み込む必要が生まれました。
+IAEAにはWindows-31Jが登録されていますが、Microsoftの標準ウェブブラウザInternet ExploreがWindows-31Jというcharsetを認識できないバグがあったため、Windows-31JであってもHTMLなどのcharsetはShift-JISとする悪慣習が存在します。そのため、HTMLなどのウェブ文書のcharsetがShift-JISと表記されていてもWindows-31J（やさらにその上位互換のx-MS932-0213）で読み込む必要が生まれました。
 ***
 <h3>コラム：<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/MalformedInputException.html" target="_blank">MalformedInputException</a>と<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/UnmappableCharacterException.html" target="_blank">UnmappableCharacterException</a>の回避方法</h3>
-文字コードをIOで設定してもMalformedInputExceptionやUnmappableCharacterExceptionでファイルが読み取れない場合があります。特にウェブ上のHTMLファイルを読み取るときにしばしばこの問題が発生します。この問題が発生した場合は、<a href="http://www.scala-lang.org/api/current/index.html#scala.io.Codec" target="_blank">Codec</a>クラスや<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/CharsetDecoder.html" target="_blank">CharsetDecorder</a>クラス、<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/CharsetEncoder.html" target="_blank">CharsetEncoder</a>クラスが持つonMalformedInputのメソッドやonUnmappableCharacterメソッドでExceptionを無視したり、特定のCharに置き換えたることができます。なおHTMLのCharsetがShift_JISとなっていた場合だとShift_JISの上位互換のwindows-31jで読み込むだけで上記のExceptionが回避できる場合もあります。
+文字コードをIOで設定してもMalformedInputExceptionやUnmappableCharacterExceptionでファイルが読み取れない場合があります。特にウェブ上のHTMLファイルを読み取るときにしばしばこの問題が発生します。この問題が発生した場合は、<a href="http://www.scala-lang.org/api/current/index.html#scala.io.Codec" target="_blank">Codec</a>クラスや<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/CharsetDecoder.html" target="_blank">CharsetDecorder</a>クラス、<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/nio/charset/CharsetEncoder.html" target="_blank">CharsetEncoder</a>クラスが持つonMalformedInputのメソッドやonUnmappableCharacterメソッドでExceptionを無視したり、特定のCharに置き換えたることができます。なおHTMLのCharsetがShift_JISとなっていた場合だとShift_JISの上位互換のWindows-31Jやされにその上位互換のx-MS932-0213で読み込むだけで上記のExceptionが回避できる場合もあります。
 ```scala
   @Test
   def testCodec(): Unit = {
@@ -162,7 +162,7 @@ IAEAにはWindows-31Jが登録されていますが、Microsoftの標準ウェ�
   
   /**
     * (1) If the encoding was not supported, this method would return BufferedSource which has only an empty string.
-    * (2) If the encoding was Shift JIS, this method would use Windows-31J instead of Shift JIS.
+    * (2) If the encoding was Shift JIS, this method would use x-MS932-0213 instead of Shift JIS.
     * (3) Ignore
     * java.nio.charset.MalformedInputException
     * (4) Replace a character
@@ -174,7 +174,7 @@ IAEAにはWindows-31Jが登録されていますが、Microsoftの標準ウェ�
     */
   private def getSourcefromURL(url: String, encoding: String): BufferedSource = {
     val sjis: Charset = Charset.forName("Shift_JIS")
-    val ms932: Charset = Charset.forName("windows-31j")
+    val ms932: Charset = Charset.forName("x-MS932-0213")
     val utf8: Charset = StandardCharsets.UTF_8
     val ghost: String = "彁"
 
