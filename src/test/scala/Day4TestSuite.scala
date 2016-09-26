@@ -58,9 +58,9 @@ class Day4TestSuite extends AssertionsForJUnit {
 
   @Test
   def testEncodingConverter(): Unit = {
-    val str = ""
-    val eucJpToUtf8 = new String(str.getBytes("EUC-JP"), StandardCharsets.UTF_8)
-    val toMs932 = new String(str.getBytes, "MS932")
+    val str: String = ""
+    val eucJpToUtf8: String = new String(str.getBytes("EUC-JP"), StandardCharsets.UTF_8)
+    val toMs932: String = new String(str.getBytes, "MS932")
   }
 
   @Test
@@ -74,7 +74,7 @@ class Day4TestSuite extends AssertionsForJUnit {
 
   /**
     * (1) If the encoding was not supported, this method would return BufferedSource which has only an empty string.
-    * (2) If the encoding was Shift JIS, this method would use Windows-31J instead of Shift JIS.
+    * (2) If the encoding was Shift JIS, this method would use x-MS932_0213 instead of Shift JIS.
     * (3) Ignore
     * java.nio.charset.MalformedInputException
     * (4) Replace a character
@@ -86,14 +86,14 @@ class Day4TestSuite extends AssertionsForJUnit {
     */
   private def getSourcefromURL(url: String, encoding: String): BufferedSource = {
     val sjis: Charset = Charset.forName("Shift_JIS")
-    val ms932: Charset = Charset.forName("windows-31j")
+    val ms932: Charset = Charset.forName("x-MS932_0213")
     val utf8: Charset = StandardCharsets.UTF_8
     val ghost: String = "彁"
 
     if (!Charset.isSupported(encoding)) {
       return new BufferedSource(
         new ByteArrayInputStream(
-          "".getBytes()))
+          "".getBytes))
     }
 
     Charset.forName(encoding) match {
