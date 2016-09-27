@@ -63,7 +63,7 @@ Charsetクラスでよく使われるメソッドをスライドに一覧にし�
     val toMs932: String = new String(str.getBytes, "MS932")
   }
 ```
-Windowsのコマンドプロンプトの文字コード変更については<a href="#コラムwindowsのコマンドプロンプトの文字コード変更">コラム：Windowsのコマンドプロンプトの文字コード変更</a>、文字コードwindows-31j（MS932）については<a href="#コラムwindows-31jとは">コラム：windows-31jとは</a>、
+Windowsのコマンドプロンプトの文字コード変更については<a href="#コラムwindowsのコマンドプロンプトの文字コード変更">コラム：Windowsのコマンドプロンプトの文字コード変更</a>、文字コードWindows-31J（MS932）については<a href="#コラムmicrosoftの日本語文字コードの歴史shift-jis-windows-31jなど">コラム：Microsoftの日本語文字コードの歴史（Shift-JIS, Windows-31Jなど）</a>、
 MalformedInputExceptionとUnmappableCharacterExceptionの回避方法については<a href="#コラムmalformedinputexceptionとunmappablecharacterexceptionの回避方法">コラム：MalformedInputExceptionとUnmappableCharacterExceptionの回避方法</a>を参照ください。
 ***
 <h3>コラム：Windowsのコマンドプロンプトの文字コード変更</h3>
