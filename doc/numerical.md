@@ -5,6 +5,7 @@ JavaでStringと数値型の変換を学ぶには、数値型が参照型では�
 JavaでのStringとプリミティブ型との相互変換については<a href="#コラムjavaでのstringとプリミティブ型の相互変換">コラム：JavaでのStringとプリミティブ型の相互変換</a>を参照ください。  
 <img src="../image/string_course.006.jpeg" width="500px"><br>
 一方でScalaは数値型も参照型であるために簡単に変換が可能です。ただし、非検査例外<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/RuntimeException.html" target="_blank">RuntimeException</a>の一種である<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/NumberFormatException.html" target="_blank">NumberFormatException</a>（Booleanの場合のみ数値型ではないため<a href="http://docs.oracle.com/javase/jp/8/docs/api/java/lang/IllegalArgumentException.html" target="_blank">IllegalArgumentException</a>）に注意が必要です。
+
 ```scala
   @Test
   def testConversionsBetweenStringAndNum(): Unit = {
@@ -45,6 +46,7 @@ Javaでは検査例外と非検査例外が存在しますが、Scalaでは非�
 <h3>2.1　JavaのBooleanラッパークラスのparseBooleanメソッドによる文字列からのBooleanへの変換</h3>
 <img src="../image/string_course.007.jpeg" width="500px"><br>
 java.lang.BooleanのparseBooleanメソッドは大文字（Upper Case）や小文字（Lower Case）といったケースを無視して"true"の場合は```true```、それ以外は全て```false```を返します。StringクラスのtoBooleanメソッド（厳密にはScalaのStringはStringLikeでimplicit class に暗黙的に拡張されており、StringLike内でtoBooleanメソッドは実装されています）では、ケースを無視して"true"、"false"以外の場合は非検査例外IllegalArgumentExceptionが発生します。
+
 ```scala
   @Test
   def testParseBoolean(): Unit = {
@@ -56,6 +58,7 @@ java.lang.BooleanのparseBooleanメソッドは大文字（Upper Case）や小�
 ***
 <h3>2.2　数字（Charまたはコードポイント）から数値（Int）への変換</h3>
 java.lang.Character.getNumericValueメソッドで数字（Charまたはコードポイント）から数値（Int）に変換できます。ただし、漢数字は0を表す「〇」以外は全て数字ではないことを表す-1を返します。数字であっても小数のように正の整数で返せない場合は-2を返します。
+
 ```scala
   @Test
   def testGetNumericValue(): Unit = {
@@ -317,6 +320,7 @@ java.lang.Character.getNumericValueメソッドで数字（Charまたはコー�
 <h4>2.3.1　特定の進数表記</h4>
 <img src="../image/string_course.008.jpeg" width="500px"><br>
 java.lang.Integer、java.lang.Long、java.lang.Float、java.lang.Doubleには特定の進数表記に変換するメソッドが用意されています。
+
 ```scala
 
   @Test
@@ -336,6 +340,7 @@ java.lang.Integer、java.lang.Long、java.lang.Float、java.lang.Doubleには特
 <h4>2.3.2　任意の進数表記</h4>
 <img src="../image/string_course.009.jpeg" width="500px"><br>
 java.lang.Integer、java.lang.Longは任意のN進数表記のStringに変換するtoStringメソッドを持っています。そして、java.lang.Byte、java.lang.Short、java.lang.Integer、java.lang.Longは任意のN進数表記のStringから数値型に変換するメソッドを持っています。
+
 ```scala
   @Test
   def testRadix1(): Unit = {
@@ -386,6 +391,7 @@ java.lang.Integer、java.lang.Longは任意のN進数表記のStringに変換す
 Character.digitメソッドで文字（Charやコードポイント）をN進数表記と解釈して数値型に変換できます。
 Character.digitメソッドは第二引数で与えられた基数Nで定義されない文字の変換については-1を返します。
 数字（Charやコードポイント）を数値に変換するCharacter.getNumericValueメソッドは、N=36の場合のCharacter.digitメソッドに似た振舞いをします。なぜ36かというと、0-9の10文字とa-zの26文字を合計して36文字が一般的にN進数表記で使用される文字だからです。定義される基数Nの最大値Character.MAX_RADIXにも36が格納されています。基数36を与えたCharacter.digitメソッドとCharacter.getNumericValueメソッドの違いは、Character.getNumericValueメソッドはN進数と関係ない数字（ローマ数字で50を表す'\u216C'、漢数字で0を表す'〇'など）に対しても数値を返す点と文字が数字ではない場合は-1を返しますが文字が数字であっても正の整数を表さない場合は-2を返す点です。
+
 ```scala
   @Test
   def testRadix2(): Unit = {
@@ -547,6 +553,7 @@ implicitメソッドで既存クラスを自分が定義した新しいクラス
 <h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
 Javaでの数値型を含むプリミティブ型とStringとの相互変換を説明しますが、それを説明する前にプリミティブ型同士の相互変換やプリミティブ型とプリミティブラッパークラスとの相互変換についても説明します。Scalaでのみプログラミングをする人は読み飛ばしてください。
 <h4>（１）widening primitive conversion</h4>
+
 ```java
 double value = 10.0F;
 ```
@@ -555,6 +562,7 @@ long (64bit) &gt; int (32bit) &gt; short (16bit) &gt; byte (8bit)<br>
 double (64bit) &gt; float (32bit)  
 
 <h4>（２）narrowing primitive conversion</h4>
+
 ```java
 int value = (int) 10L;
 ```
@@ -585,11 +593,13 @@ Character|Character characterObj = Character.valueOf(cValue);|char cValue = char
 Byte (Short, Integer, Long, Float, DoubleもByteと同様)|Byte byteObj = Byte.valueOf(bValue);|byte bValue = byteObj.byteValue();<br>//NullPointerException<br><br>short sValue = byteObj.shortValue();<br>//NullPointerException<br><br>int iValue = byteObj.intValue();<br>//NullPointerException<br><br>long lValue = byteObj.longValue();<br>//NullPointerException<br><br>float fValue = byteObj.floatValue();<br>//NullPointerException<br><br>double dValue = byteObj.doubleValue();<br>//NullPointerException
 
 <h4>（４）auto-boxing conversion</h4>
+
 ```java
 Integer obj = 10;
 ```
 プリミティブ型からラッパークラスへの変換は明示しなくても変換できます。
 <h4>（５）auto-unboxing conversion</h4>
+
 ```java
 int value = Integer.valueOf(10);
 ```
