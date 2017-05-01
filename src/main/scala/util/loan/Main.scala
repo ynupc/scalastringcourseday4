@@ -9,7 +9,8 @@ import scala.io.Source
   *         Created on 2017/05/01
   */
 object Main extends App {
-  Control.using(Source.fromFile(Paths.get("doc", "charset.md").toFile)) {
+  import Control.using
+  using(Source.fromFile(Paths.get("doc", "charset.md").toFile)) {
     _.getLines foreach println
   }
 }
