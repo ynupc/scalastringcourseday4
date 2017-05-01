@@ -508,11 +508,30 @@ class Day4TestSuite extends AssertionsForJUnit {
   }
 
   @Test
-  def testPimpMyLibrary(): Unit = {
-    import _root_.util.StringUtils._
-
+  def testPimpMyLibraryPattern(): Unit = {
     assert(0x20BB7.toHexString == "20bb7")
     assert(0x20BB7.toHexString.toUpperCase == "20BB7")
+    assert(0x20BB7.toOctalString == "405667")
+    assert(0x20BB7.toBinaryString == "100000101110110111")
+
+    import _root_.util.pimp_my_library.StringUtils._
+
     assert("20BB7".hexStringToInt == 0x20BB7)
+    assert("405667".octalStringToInt == 0x20BB7)
+    assert("100000101110110111".binaryStringToInt == 0x20BB7)
+  }
+
+  @Test
+  def testEnrichMyLibraryPattern(): Unit = {
+    assert(0x20BB7.toHexString == "20bb7")
+    assert(0x20BB7.toHexString.toUpperCase == "20BB7")
+    assert(0x20BB7.toOctalString == "405667")
+    assert(0x20BB7.toBinaryString == "100000101110110111")
+
+    import _root_.util.enrich_my_library.primitive._
+
+    assert("20BB7".hexStringToInt == 0x20BB7)
+    assert("405667".octalStringToInt == 0x20BB7)
+    assert("100000101110110111".binaryStringToInt == 0x20BB7)
   }
 }
