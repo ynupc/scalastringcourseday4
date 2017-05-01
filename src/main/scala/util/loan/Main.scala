@@ -10,9 +10,6 @@ import scala.io.Source
   */
 object Main extends App {
   Control.using(Source.fromFile(Paths.get("doc", "charset.md").toFile)) {
-    _.getLines foreach {
-      line: String =>
-        println(line)
-    }
+    _.getLines foreach println
   }
 }
