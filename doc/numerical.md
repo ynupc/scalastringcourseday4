@@ -451,7 +451,10 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
 ```
 
 ***
-<h3>2.4　既存クラスに変換メソッドを足したように見せる方法（Pimp my Libraryパターン）（自作）</h3>
+<h3>2.4　既存クラスに変換メソッドを足したように見せる方法</h3>
+
+***
+<h4>2.4.1　Pimp My Libraryパターン</h4>
 
 <img src="../image/string_course.011.jpeg" width="500px"><br>
 
@@ -498,7 +501,7 @@ implicitメソッドで既存クラスを自分が定義した新しいクラス
 
 </table>
 
-<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/StringUtils.scala">StringUtils</a>
+<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/pimp_my_library/StringUtils.scala">StringUtils</a>
 <table>
 <tr>
 <th>Stringクラスに追加するメソッド</th><th>数値の表記形式</th><th>どのクラスに変換するか</th>
@@ -565,14 +568,294 @@ implicitメソッドで既存クラスを自分が定義した新しいクラス
 
 ```scala
   @Test
-  def testPimpMyLibrary(): Unit = {
-    import _root_.util.StringUtils._
-
+  def testPimpMyLibraryPattern(): Unit = {
     assert(0x20BB7.toHexString == "20bb7")
     assert(0x20BB7.toHexString.toUpperCase == "20BB7")
+    assert(0x20BB7.toOctalString == "405667")
+    assert(0x20BB7.toBinaryString == "100000101110110111")
+
+    import _root_.util.pimp_my_library.StringUtils._
+
     assert("20BB7".hexStringToInt == 0x20BB7)
+    assert("405667".octalStringToInt == 0x20BB7)
+    assert("100000101110110111".binaryStringToInt == 0x20BB7)
   }
 ```
+
+***
+<h4>2.4.2　Enrich My Libraryパターン</h4>
+
+<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/StringUtilsConversions.scala">StringUtilsConversions</a>
+
+<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/primitive.scala">primitive</a>
+
+
+```scala
+  @Test
+  def testEnrichMyLibraryPattern(): Unit = {
+    assert(0x20BB7.toHexString == "20bb7")
+    assert(0x20BB7.toHexString.toUpperCase == "20BB7")
+    assert(0x20BB7.toOctalString == "405667")
+    assert(0x20BB7.toBinaryString == "100000101110110111")
+
+    import _root_.util.enrich_my_library.primitive._
+
+    assert("20BB7".hexStringToInt == 0x20BB7)
+    assert("405667".octalStringToInt == 0x20BB7)
+    assert("100000101110110111".binaryStringToInt == 0x20BB7)
+  }
+```
+
+***
+<h3>コラム：using</h3>
+
+スコープ内でopenしたリソースをスコープ外では確実にcloseできると便利ですね。
+C#のusing構文やJava 7以降のtry-with-resources構文はそのような目的で作られた構文です。
+
+C#のusing構文は次のような構文です。
+```csharp
+using (ここにリソースを書く)
+using (ここに追加のリソースを書く) {
+  
+}
+```
+例えば、次のように書きます。
+```csharp
+string inputPath = "読み込むファイルへのパス";
+string outputPath = "書き出すファイルへのパス";
+
+using(Stream inputStream = File.OpenRead(inputPath))
+using(StreamReader reader = new StreamReader(inputStream, Encoding.GetEncoding("EUC-JP")))//文字コードがEUC-JPであるファイルを読み込みます。
+using(Stream outputStream = File.OpenWrite(outputPath))
+using(StreamWriter writer = new StreamWriter(outputStream, Encoding.UTF8)) {//文字コードがUTF-8となるようにファイルを書き出します。
+  string line = reader.ReadLine();
+  Console.WriteLine(line);
+  writer.WriteLine(line);
+}
+```
+
+Javaのtry-with-resources構文は次のような構文です。
+```java
+try (ここにリソースを書く;
+     ここに追加のリソースを書く;) {
+
+} catch (Exception e) {
+  e.printStackTrace();
+}
+```
+例えば、次のように書きます。
+```java
+Path inputPath = Paths.get("読み込むファイルへのパス");
+Path outputPath = Paths.get("書き出すファイルへのパス");
+
+CharsetDecoder decoder = Charset.forName("EUC-JP").newDecoder().//文字コードがEUC-JPであるファイルを読み込みます。
+  onUnmappableCharacter(CodingErrorAction.IGNORE).//Unmappable characterを無視します。
+  onMalformedInput(CodingErrorAction.IGNORE);//Malformed inputを無視します。
+  
+try (Reader r = Channels.newReader(FileChannel.open(inputPath), decoder, -1);
+     BufferedReader br = new BufferedReader(r);
+     PrintWriter pw = new PrintWriter(Files.newBufferedWriter(outputPath, StandardCharsets.UTF_8,//文字コードがUTF-8となるようにファイルを書き出します。
+       StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING))) {
+  Iterator<String> it = br.lines().iterator();
+  while (it.hasNext()) {
+    String line = it.next();
+    System.out.println(line);
+    pw.println("ファイルに書き出します。");
+  }
+} catch (FileNotFoundException e) {
+  System.err.println("指定したパスにファイルが存在しません。");
+  e.printStackTrace();
+} catch (UnsupportedEncodingException e) {
+  System.err.println("文字コードがサポートされていません。");
+  e.printStackTrace();
+} catch (IOException e) {
+  e.printStackTrace();
+}
+```
+
+残念ながらScalaにはusing構文やtry-with-resources構文に相当する構文はありません。
+そこで、これらと同じようにScalaで表現する方法について解説します。
+
+現在、Scalaでリソースを扱う場合は次のようなプログラムになります。
+```scala
+import scala.io.Source
+
+val in1: BufferedSource = Source.fromFile("ファイルパス1")
+val in2: BufferedSource = Source.fromFile("ファイルパス2")
+
+try {
+  in1.getLines foreach println
+  in2.getLines foreach println
+} finally {
+  in1.close()
+  in2.close()
+}
+```
+これを"できるだけ"次のように書けるようにしたいです。
+```scala
+using(val in1: BufferedSource = Source.fromFile("ファイルパス1"))
+using(val in2: BufferedSource = Source.fromFile("ファイルパス2")) {
+  in1.getLines foreach println
+  in2.getLines foreach println
+}
+```
+Scalaの構文で上記のように書けるようにすることは不可能なので、"できるだけ"近づけてみます。
+
+<h4>（１）Loanパターン</h4>
+
+Loanパターンとは、リソースを貸し出し（loan）、貸し出されたリソースに処理を加える方法です。
+Loanパターンを使用するとusingが次のように書けます。
+
+```scala
+  import Control.using
+  
+  using(Source.fromFile(Paths.get("doc", "charset.md").toFile)) {
+    _.getLines foreach println
+  }
+```
+
+このソースコードはこちら（<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/loan/Main.scala">Main</a>）にあります。
+
+このプログラムの<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/loan/Control.scala">Control.using</a>は次のように実装します。
+```def using[A, B](resource: A)(f: A => B)```の部分がLoanパターンです。
+
+```scala
+object Control {
+  private type TCloseable = {
+    def close(): Unit
+  }
+
+  def using[A, B](resource: A)(f: A => B)(implicit r: A => TCloseable): Unit = {
+    Option(resource) match {
+      case Some(res) =>
+        try {
+          f(res)
+        } finally {
+          res.close()
+        }
+      case None =>
+        throw new Exception()
+    }
+  }
+
+  private type TDisposable = {
+    def dispose(): Unit
+  }
+  implicit def d2c(disposable: TDisposable): TCloseable = {
+    new {
+      def close(): Unit = disposable.dispose()
+    }
+  }
+
+  private type TReleasable = {
+    def release(): Unit
+  }
+  implicit def r2c(releasable: TReleasable): TCloseable = {
+    new {
+      def close(): Unit = releasable.release()
+    }
+  }
+}
+```
+
+この例ではさらに<a href="http://docs.scala-lang.org/tutorials/tour/implicit-parameters.html" target="_blank">implicit parameters</a>```(implicit r: A => TCloseable)```と<a href="http://docs.scala-lang.org/tutorials/tour/implicit-conversions" target="_blank">implicit conversions</a>```implicit def d2c(disposable: TDisposable): TCloseable```を使用することでリソースの解放がclose以外の例えばdisposeやreleaseに対しても適用範囲を広げています。
+
+この方法の問題点として、複数リソースに対しては次のようにネストさせる必要があります。
+```scala
+  import Control.using
+  
+  using(Source.fromFile(Paths.get("doc", "charset.md").toFile)) {
+    in1 =>
+      using(Source.fromFile(Paths.get("doc", "numerical.md").toFile)) {
+        in2 =>
+          in1.getLines foreach println
+          in2.getLines foreach println
+      }
+  }
+```
+
+<h4>（２）CONCEPTパターン</h4>
+CONCEPTパターンとは、共通のトレイトを持たない既存のクラス群に、共通のトレイトを加えるためのパターンです。
+Loanパターンでは複数リソースに対してネストさせる必要がありましたが、CONCEPTパターンを適用し改良することで、次のようにネストさせず書けるようになります。
+
+```scala
+  import using.closeable
+  
+  for {
+    in1 <- using(Source.fromFile(Paths.get("doc", "charset.md").toFile))
+    in2 <- using(Source.fromFile(Paths.get("doc", "numerical.md").toFile))
+  } {
+    in1.getLines foreach println
+    in2.getLines foreach println
+  }
+```
+このソースコードはこちら（<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/concept/Main.scala">Main</a>）にあります。
+
+
+このプログラムの<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/concept/using.scala">using</a>を次のように実装します。java.io.Closeableやここで定義したTCloseable, TDisposable, TReleasableに```trait Closer[-A]```を加えて、それぞれが持つclose, dispose, releaseといったメソッドをCloserトレイトのclose(resource: A)メソッドに実装しています。implicit parametersである```def apply[A](resource: A)(implicit closer: Closer[A])```の引数closerに、```implicit val tCloseable = new Closer[TCloseable]```のように```implicit val```で定義された値を暗黙的に渡しています。
+
+```scala
+import java.io.Closeable
+
+object using {
+  def apply[A](resource: A)(implicit closer: Closer[A]) = new using(resource, closer)
+
+  implicit val closeable = new Closer[Closeable] {
+    def close(resource: Closeable): Unit = {
+      resource.close()
+    }
+  }
+
+  type TCloseable = {
+    def close(): Unit
+  }
+  implicit val tCloseable = new Closer[TCloseable] {
+    def close(resource: TCloseable): Unit = {
+      resource.close()
+    }
+  }
+
+  type TDisposable = {
+    def dispose(): Unit
+  }
+
+  implicit val tDisposable = new Closer[TDisposable] {
+    def close(resource: TDisposable): Unit = {
+      resource.dispose()
+    }
+  }
+
+  type TReleasable = {
+    def release(): Unit
+  }
+
+  implicit val tReleasable = new Closer[TReleasable] {
+    def close(resource: TReleasable): Unit = {
+      resource.release()
+    }
+  }
+}
+
+class using[A] private (resource: A, closer: Closer[A]) {
+  def foreach[B](f: A => B): B = {
+    Option(resource) match {
+      case Some(res) =>
+        try {
+          f(res)
+        } finally {
+          closer.close(res)
+        }
+      case None =>
+        throw new Exception()
+    }
+  }
+}
+
+trait Closer[-A] {
+  def close(resource: A): Unit
+}
+```
+
 
 ***
 <h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
