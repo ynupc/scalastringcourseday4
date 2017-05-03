@@ -856,6 +856,10 @@ trait Closer[-A] {
 }
 ```
 
+参考文献：
+<ul>
+<li><a href="http://www.ne.jp/asahi/hishidama/home/tech/scala/sample/using.html" target="_blank">Scala using（ローンパターン）</a></li>
+</ul>
 
 ***
 <h3>コラム：JavaでのStringとプリミティブ型の相互変換</h3>
