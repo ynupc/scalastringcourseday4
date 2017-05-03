@@ -221,4 +221,16 @@ package object primitive {
       }
     }
   }
+
+  implicit class FloatUtils(repr: Float) extends HexStringConversions {
+    override def toHexString: String = {
+      java.lang.Float.toHexString(repr)
+    }
+  }
+
+  implicit class DoubleUtils(repr: Double) extends HexStringConversions {
+    override def toHexString: String = {
+      java.lang.Double.toHexString(repr)
+    }
+  }
 }
