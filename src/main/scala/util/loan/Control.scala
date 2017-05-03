@@ -10,10 +10,15 @@ object Control {
   }
 
   def using[A, B](resource: A)(f: A => B)(implicit r: A => TCloseable): Unit = {
-    try {
-      f(resource)
-    } finally {
-      resource.close()
+    Option(resource) match {
+      case Some(res) =>
+        try {
+          f(res)
+        } finally {
+          res.close()
+        }
+      case None =>
+        throw new Exception()
     }
   }
 

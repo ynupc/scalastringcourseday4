@@ -10,6 +10,7 @@ import scala.io.Source
   */
 object Main extends App {
   import using.closeable
+
   for {
     in1 <- using(Source.fromFile(Paths.get("doc", "charset.md").toFile))
     in2 <- using(Source.fromFile(Paths.get("doc", "numerical.md").toFile))

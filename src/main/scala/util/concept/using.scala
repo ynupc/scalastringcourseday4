@@ -7,11 +7,11 @@ import java.io.Closeable
   *         Created on 2017/05/01
   */
 object using {
-  def apply[A](value: A)(implicit closer: Closer[A]) = new using(value, closer)
+  def apply[A](resource: A)(implicit closer: Closer[A]) = new using(resource, closer)
 
   implicit val closeable = new Closer[Closeable] {
-    def close(value: Closeable): Unit = {
-      value.close()
+    def close(resource: Closeable): Unit = {
+      resource.close()
     }
   }
 
@@ -19,8 +19,8 @@ object using {
     def close(): Unit
   }
   implicit val tCloseable = new Closer[TCloseable] {
-    def close(value: TCloseable): Unit = {
-      value.close()
+    def close(resource: TCloseable): Unit = {
+      resource.close()
     }
   }
 
@@ -29,8 +29,8 @@ object using {
   }
 
   implicit val tDisposable = new Closer[TDisposable] {
-    def close(value: TDisposable): Unit = {
-      value.dispose()
+    def close(resource: TDisposable): Unit = {
+      resource.dispose()
     }
   }
 
@@ -39,22 +39,27 @@ object using {
   }
 
   implicit val tReleasable = new Closer[TReleasable] {
-    def close(value: TReleasable): Unit = {
-      value.release()
+    def close(resource: TReleasable): Unit = {
+      resource.release()
     }
   }
 }
 
-class using[A] private (value: A, closer: Closer[A]) {
+class using[A] private (resource: A, closer: Closer[A]) {
   def foreach[B](f: A => B): B = {
-    try {
-      f(value)
-    } finally {
-      closer.close(value)
+    Option(resource) match {
+      case Some(res) =>
+        try {
+          f(res)
+        } finally {
+          closer.close(res)
+        }
+      case None =>
+        throw new Exception()
     }
   }
 }
 
 trait Closer[-A] {
-  def close(value: A): Unit
+  def close(resource: A): Unit
 }
