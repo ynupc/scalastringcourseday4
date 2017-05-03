@@ -460,7 +460,7 @@ java.lang.Integer.toHexStringメソッドやjava.lang.Integer.parseIntメソッ�
 
 <img src="../image/string_course.011.jpeg" width="500px"><br>
 
-implicitメソッドで既存クラスを自分が定義した新しいクラスに暗黙のうちに変換（implicit conversions）して、新しいクラスに欲しいメソッドを定義しておくと見かけ上は既存に欲しいメソッドを足したようになります。Pimp My Libraryパターンを実装したクラスとそれを使って変換についてのサンプルコードは次です。
+implicitメソッドで既存クラスを自分が定義した新しいクラスに暗黙のうちに変換（<a href="http://docs.scala-lang.org/tutorials/tour/implicit-conversions" target="_blank">implicit conversions</a>）して、新しいクラスに欲しいメソッドを定義しておくと見かけ上は既存に欲しいメソッドを足したようになります。Pimp My Libraryパターンを実装したクラスとそれを使って変換についてのサンプルコードは次です。
 
 <ul>
 <li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/IntUtils.scala">IntUtils</a></li>
