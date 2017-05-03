@@ -589,6 +589,8 @@ implicitメソッドで既存クラスを自分が定義した新しいクラス
 ***
 <h4>2.4.2　Enrich My Libraryパターン</h4>
 
+<img src="../image/string_course.012.jpeg" width="500px"><br>
+
 かつてPimp My Libraryパターンがよく使われていたが冗長なので、Scala 2.10から<a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html">implicit classes</a>という構文が足され、Pimp My Libraryパターンの改良としてEnrich My Libraryパターンが生まれました。
 
 Stringクラスに<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/StringUtilsConversions.scala">StringUtilsConversions</a>トレイトを実装したStringUtilsにimplicit classesを使って
