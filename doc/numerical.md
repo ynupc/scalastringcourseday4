@@ -453,14 +453,15 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
 ***
 <h3>2.4　既存クラスに変換メソッドを足したように見せる方法</h3>
 
-***
+java.lang.Integer.toHexStringメソッドやjava.lang.Integer.parseIntメソッドを使用して、16進数表記のStringクラスとIntクラスとを相互変換できますが、
+もし、Intクラス、Longクラスなどの数値型のクラスやStringクラスに対して、メソッドを足すことができれば、IntクラスからtoStringメソッドでStringクラスに変換したり、StringクラスからtoIntメソッドでIntクラスに変換したりするような形で、16進数表記のStringクラスとIntクラスとを相互変換できるようになります。例えば、IntクラスにtoHexStringメソッドを足したり、StringクラスにhexStringToIntメソッドを足したりできます。そのような変換メソッドがあった方が直感的ですし、そのようにしたい場合は、StringクラスやIntクラスのような既存のクラスにメソッドを足すことはできないですが、足したように見せかける方法としてPimp My LibraryパターンとEnrich My Libraryパターンがあります。Pimp My Libraryパターンがよく使われていたが冗長なので、Scalaの構文が更新され、Pimp My Libraryパターンの改良としてEnrich My Libraryパターンが生まれました。ここでは、Pimp My Libraryパターンを説明し、その後、Enrich My Libraryパターンを説明します。
+
 <h4>2.4.1　Pimp My Libraryパターン</h4>
 
 <img src="../image/string_course.011.jpeg" width="500px"><br>
 
-java.lang.Integer.toHexStringメソッドやjava.lang.Integer.parseIntメソッドを使用して、16進数表記のStringクラスとIntクラスとを相互変換できますが、
-もし、Intクラス、Longクラスなどの数値型のクラスやStringクラスに対して、メソッドを足すことができれば、IntクラスからtoStringメソッドでStringクラスに変換したり、StringクラスからtoIntメソッドでIntクラスに変換したりするような形で、16進数表記のStringクラスとIntクラスとを相互変換できるようになります。例えば、IntクラスにtoHexStringメソッドを足したり、StringクラスにhexStringToIntメソッドを足したりできます。そのような変換メソッドがあった方が直感的ですし、そのようにしたい場合は、StringクラスやIntクラスのような既存のクラスにメソッドを足すことはできないですが、足したように見せかける方法Pimp my Libraryパターンがあります。
-implicitメソッドで既存クラスを自分が定義した新しいクラスに暗黙のうちに変換して、新しいクラスに欲しいメソッドを定義しておくと見かけ上は既存に欲しいメソッドを足したようになります。Pimp my Libraryパターンを実装したクラスとそれを使って変換についてのサンプルコードは次です。
+implicitメソッドで既存クラスを自分が定義した新しいクラスに暗黙のうちに変換（implicit conversions）して、新しいクラスに欲しいメソッドを定義しておくと見かけ上は既存に欲しいメソッドを足したようになります。Pimp My Libraryパターンを実装したクラスとそれを使って変換についてのサンプルコードは次です。
+
 <ul>
 <li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/IntUtils.scala">IntUtils</a></li>
 <li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/LongUtils.scala">LongUtils</a></li>
@@ -500,6 +501,9 @@ implicitメソッドで既存クラスを自分が定義した新しいクラス
 </tr>
 
 </table>
+
+なお、IntとLongに付け足したいメソッドは現状のScalaでもそれぞれRichIntとRichLongに暗黙的に変換され既に追加されているので、実際上は必要ないです。
+一方で、FloatとDoubleはそれぞれRichFloatとRichLongに暗黙的に変換されるがtoHexStringメソッドはどちらにも実装されていないので、自前で実装する必要があります。
 
 <a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/pimp_my_library/StringUtils.scala">StringUtils</a>
 <table>
@@ -585,10 +589,10 @@ implicitメソッドで既存クラスを自分が定義した新しいクラス
 ***
 <h4>2.4.2　Enrich My Libraryパターン</h4>
 
-<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/StringUtilsConversions.scala">StringUtilsConversions</a>
+かつてPimp My Libraryパターンがよく使われていたが冗長なので、Scala 2.10から<a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html">implicit classes</a>という構文が足され、Pimp My Libraryパターンの改良としてEnrich My Libraryパターンが生まれました。
 
-<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/primitive.scala">primitive</a>
-
+Stringクラスに<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/StringUtilsConversions.scala">StringUtilsConversions</a>トレイトを実装したStringUtilsにimplicit classesを使って
+<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/primitive.scala">primitive</a>で暗黙的に変換します。StringUtilsConversionsで定義されているが未実装なメソッドを、変換時に実装しています。
 
 ```scala
   @Test
