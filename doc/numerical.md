@@ -592,7 +592,7 @@ implicitメソッドで既存クラスを自分が定義した新しいクラス
 かつてPimp My Libraryパターンがよく使われていたが冗長なので、Scala 2.10から<a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html">implicit classes</a>という構文が足され、Pimp My Libraryパターンの改良としてEnrich My Libraryパターンが生まれました。
 
 Stringクラスに<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/StringUtilsConversions.scala">StringUtilsConversions</a>トレイトを実装したStringUtilsにimplicit classesを使って
-<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/primitive.scala">primitive</a>で暗黙的に変換します。StringUtilsConversionsで定義されているが未実装なメソッドを、変換時に実装しています。同様に、<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/HexStringConversions.scala">HexStringConversions</a>トレイトを用いて、FloatとDoubleにtoHexStringメソッドを足しています。なお、今回は```import _root_.util.enrich_my_library.primitive._```だけでString, Float, Doubleの暗黙的な変換が全てimportされます。
+<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/primitive.scala">primitive</a>で暗黙的に変換します。StringUtilsConversionsで定義されているが未実装なメソッドを、変換時に実装しています。同様に、<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/HexStringConversions.scala">HexStringConversions</a>トレイトを用いて、FloatとDoubleにtoHexStringメソッドを足しています。なお、このprimitiveの実装では```import _root_.util.enrich_my_library.primitive._```だけでString, Float, Doubleの暗黙的な変換が全てimportされます。
 
 ```scala
   @Test
