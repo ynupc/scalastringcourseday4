@@ -502,7 +502,7 @@ implicitメソッドで既存クラスを自分が定義した新しいクラス
 
 </table>
 
-なお、IntとLongに付け足したいメソッドは現状のScalaでもそれぞれRichIntとRichLongに暗黙的に変換され既に追加されているので、実際上は必要ないです。
+なお、IntとLongに付け足したい上記のメソッドは、実は何もしなくてもそれぞれRichIntとRichLongに暗黙的に変換され自動的に追加されるので、実際は自前で実装する必要はないです。
 一方で、FloatとDoubleはそれぞれRichFloatとRichLongに暗黙的に変換されるがtoHexStringメソッドはどちらにも実装されていないので、自前で実装する必要があります。
 
 <a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/pimp_my_library/StringUtils.scala">StringUtils</a>
