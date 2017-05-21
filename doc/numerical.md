@@ -456,11 +456,11 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
 java.lang.Integer.toHexStringメソッドやjava.lang.Integer.parseIntメソッドを使用して、16進数表記のStringクラスとIntクラスとを相互変換できますが、
 もし、Intクラス、Longクラスなどの数値型のクラスやStringクラスに対して、メソッドを足すことができれば、IntクラスからtoStringメソッドでStringクラスに変換したり、StringクラスからtoIntメソッドでIntクラスに変換したりするような形で、16進数表記のStringクラスとIntクラスとを相互変換できるようになります。例えば、IntクラスにtoHexStringメソッドを足したり、StringクラスにhexStringToIntメソッドを足したりできます。そのような変換メソッドがあった方が直感的ですし、そのようにしたい場合は、StringクラスやIntクラスのような既存のクラスにメソッドを足すことはできないですが、足したように見せかける方法としてPimp My LibraryパターンとEnrich My Libraryパターンがあります。Pimp My Libraryパターンがよく使われていたが冗長なので、Scalaの構文が更新され、Pimp My Libraryパターンの改良としてEnrich My Libraryパターンが生まれました。ここでは、Pimp My Libraryパターンを説明し、その後、Enrich My Libraryパターンを説明します。
 
-<h4>2.4.1　Pimp My Libraryパターン</h4>
+<h4>2.4.1　Enrich My Libraryパターン</h4>
 
 <img src="../image/string_course.011.jpeg" width="500px"><br>
 
-implicitメソッドで既存クラスを自分が定義した新しいクラスに暗黙のうちに変換（<a href="http://docs.scala-lang.org/tutorials/tour/implicit-conversions" target="_blank">implicit conversions</a>）して、新しいクラスに欲しいメソッドを定義しておくと見かけ上は既存に欲しいメソッドを足したようになります。Pimp My Libraryパターンを実装したクラスとそれを使って変換についてのサンプルコードは次です。
+implicitメソッドで既存クラスを自分が定義した新しいクラスに暗黙のうちに変換（<a href="http://docs.scala-lang.org/tutorials/tour/implicit-conversions" target="_blank">implicit conversions</a>）して、新しいクラスに欲しいメソッドを定義しておくと見かけ上は既存に欲しいメソッドを足したようになります。このような方法で既存のクラスに新たなメソッドを追加するパターンをEnrich My Libraryパターン（別名：Pimp My Libraryパターン）と呼びます。Enrich My Libraryパターンを実装したクラスとそれを使って変換についてのサンプルコードは次です。
 
 <ul>
 <li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/IntUtils.scala">IntUtils</a></li>
@@ -587,11 +587,11 @@ implicitメソッドで既存クラスを自分が定義した新しいクラス
 ```
 
 ***
-<h4>2.4.2　Enrich My Libraryパターン</h4>
+<h4>2.4.2　implicit classesを用いたEnrich My Libraryパターン</h4>
 
 <img src="../image/string_course.012.jpeg" width="500px"><br>
 
-かつてPimp My Libraryパターンがよく使われていたが冗長なので、Scala 2.10から<a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html">implicit classes</a>という構文が足され、Pimp My Libraryパターンの改良としてEnrich My Libraryパターンが生まれました。
+Enrich My Libraryパターンがよく使われていたが冗長なので、Scala 2.10から<a href="http://docs.scala-lang.org/overviews/core/implicit-classes.html">implicit classes</a>という構文が足され、implicit classesを用いてEnrich My Libraryパターン実装されるようになりました。
 
 Stringクラスに<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/StringUtilsConversions.scala">StringUtilsConversions</a>トレイトを実装したStringUtilsにimplicit classesを使って
 <a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/primitive.scala">primitive</a>で暗黙的に変換します。StringUtilsConversionsで定義されているが未実装なメソッドを、変換時に実装しています。同様に、<a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/enrich_my_library/HexStringConversions.scala">HexStringConversions</a>トレイトを用いて、FloatとDoubleにtoHexStringメソッドを足しています。なお、このprimitiveの実装では```import _root_.util.enrich_my_library.primitive._```だけでString, Float, Doubleの暗黙的な変換が全てimportされます。
