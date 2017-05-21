@@ -454,13 +454,13 @@ Character.digitメソッドは第二引数で与えられた基数Nで定義さ�
 <h3>2.4　既存クラスに変換メソッドを足したように見せる方法</h3>
 
 java.lang.Integer.toHexStringメソッドやjava.lang.Integer.parseIntメソッドを使用して、16進数表記のStringクラスとIntクラスとを相互変換できますが、
-もし、Intクラス、Longクラスなどの数値型のクラスやStringクラスに対して、メソッドを足すことができれば、IntクラスからtoStringメソッドでStringクラスに変換したり、StringクラスからtoIntメソッドでIntクラスに変換したりするような形で、16進数表記のStringクラスとIntクラスとを相互変換できるようになります。例えば、IntクラスにtoHexStringメソッドを足したり、StringクラスにhexStringToIntメソッドを足したりできます。そのような変換メソッドがあった方が直感的ですし、そのようにしたい場合は、StringクラスやIntクラスのような既存のクラスにメソッドを足すことはできないですが、足したように見せかける方法としてPimp My LibraryパターンとEnrich My Libraryパターンがあります。Pimp My Libraryパターンがよく使われていたが冗長なので、Scalaの構文が更新され、Pimp My Libraryパターンの改良としてEnrich My Libraryパターンが生まれました。ここでは、Pimp My Libraryパターンを説明し、その後、Enrich My Libraryパターンを説明します。
+もし、Intクラス、Longクラスなどの数値型のクラスやStringクラスに対して、メソッドを足すことができれば、IntクラスからtoStringメソッドでStringクラスに変換したり、StringクラスからtoIntメソッドでIntクラスに変換したりするような形で、16進数表記のStringクラスとIntクラスとを相互変換できるようになります。例えば、IntクラスにtoHexStringメソッドを足したり、StringクラスにhexStringToIntメソッドを足したりできます。そのような変換メソッドがあった方が直感的ですし、そのようにしたい場合は、StringクラスやIntクラスのような既存のクラスにメソッドを足すことはできないですが、足したように見せかける方法としてEnrich My Libraryパターン（別名：Pimp My Libraryパターン）があります。Enrich My Libraryパターンがよく使われていたが冗長なので、Scalaの構文が更新され、implicit classesを用いることでEnrich My Libraryパターンが簡略に書けるようになりました。ここでは、従来のEnrich My Libraryパターンを説明し、その後、implicit classesを用いたEnrich My Libraryパターンを説明します。
 
 <h4>2.4.1　Enrich My Libraryパターン</h4>
 
 <img src="../image/string_course.011.jpeg" width="500px"><br>
 
-implicitメソッドで既存クラスを自分が定義した新しいクラスに暗黙のうちに変換（<a href="http://docs.scala-lang.org/tutorials/tour/implicit-conversions" target="_blank">implicit conversions</a>）して、新しいクラスに欲しいメソッドを定義しておくと見かけ上は既存に欲しいメソッドを足したようになります。このような方法で既存のクラスに新たなメソッドを追加するパターンをEnrich My Libraryパターン（別名：Pimp My Libraryパターン）と呼びます。Enrich My Libraryパターンを実装したクラスとそれを使って変換についてのサンプルコードは次です。
+implicitメソッドで既存クラスを自分が定義した新しいクラスに暗黙のうちに変換（<a href="http://docs.scala-lang.org/tutorials/tour/implicit-conversions" target="_blank">implicit conversions</a>）して、新しいクラスに欲しいメソッドを定義しておくと見かけ上は既存に欲しいメソッドを足したようになります。このような方法で既存のクラスに新たなメソッドを追加するパターンをEnrich My Libraryパターンと呼びます。Enrich My Libraryパターンを実装したクラスとそれを使って変換についてのサンプルコードは次です。
 
 <ul>
 <li><a href="https://github.com/ynupc/scalastringcourseday4/blob/master/src/main/scala/util/IntUtils.scala">IntUtils</a></li>
